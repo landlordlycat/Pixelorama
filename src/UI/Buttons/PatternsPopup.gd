@@ -1,7 +1,7 @@
 class_name Patterns
 extends PopupPanel
 
-signal pattern_selected(pattern)
+signal pattern_selected(pattern: Pattern)
 
 var default_pattern: Pattern = null
 
@@ -16,25 +16,25 @@ func _ready() -> void:
 
 
 func select_pattern(pattern: Pattern) -> void:
-	emit_signal("pattern_selected", pattern)
+	pattern_selected.emit(pattern)
 	hide()
 
 
 func create_button(image: Image) -> Node:
-	var button: BaseButton = preload("res://src/UI/Buttons/PatternButton.tscn").instance()
-	var tex := ImageTexture.new()
+	var button: BaseButton = preload("res://src/UI/Buttons/PatternButton.tscn").instantiate()
+	var tex: ImageTexture
 	if !image.is_empty():
-		tex.create_from_image(image, 0)
+		tex = ImageTexture.create_from_image(image)
 	button.get_child(0).texture = tex
 	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	return button
 
 
 func add(image: Image, hint := "") -> void:
-	var button = create_button(image)
+	var button := create_button(image)
 	button.pattern.image = image
-	button.hint_tooltip = hint
-	var container = get_node("ScrollContainer/PatternContainer")
+	button.tooltip_text = hint
+	var container := get_node("ScrollContainer/PatternContainer")
 	container.add_child(button)
 	button.pattern.index = button.get_index()
 
@@ -44,7 +44,7 @@ func add(image: Image, hint := "") -> void:
 
 func get_pattern(index: int) -> Pattern:
 	var container = Global.patterns_popup.get_node("ScrollContainer/PatternContainer")
-	var pattern = default_pattern
+	var pattern := default_pattern
 	if index < container.get_child_count():
 		pattern = container.get_child(index).pattern
 	return pattern

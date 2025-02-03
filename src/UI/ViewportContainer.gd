@@ -1,4 +1,8 @@
-extends ViewportContainer
+extends SubViewportContainer
+
+@export var camera_path: NodePath
+
+@onready var camera := get_node(camera_path) as CanvasCamera
 
 
 func _ready() -> void:
@@ -7,12 +11,16 @@ func _ready() -> void:
 
 
 func _on_ViewportContainer_mouse_entered() -> void:
-	Global.has_focus = true
+	camera.set_process_input(true)
 	Global.control.left_cursor.visible = Global.show_left_tool_icon
 	Global.control.right_cursor.visible = Global.show_right_tool_icon
+	if Global.cross_cursor:
+		Input.set_default_cursor_shape(Input.CURSOR_CROSS)
 
 
 func _on_ViewportContainer_mouse_exited() -> void:
-	Global.has_focus = false
+	camera.set_process_input(false)
+	camera.drag = false
 	Global.control.left_cursor.visible = false
 	Global.control.right_cursor.visible = false
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

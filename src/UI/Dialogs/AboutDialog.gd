@@ -1,8 +1,72 @@
-extends WindowDialog
+extends Window
+
+const AUTHORS: PackedStringArray = [
+	"20kdc",
+	"Aaron Franke (aaronfranke)",
+	"AbhinavKDev (abhinav3967)",
+	"Álex Román Núñez (EIREXE)",
+	"alikin12",
+	"AlphinAlbukhari",
+	"Anaminus",
+	"Andreev Andrei",
+	"Arron Washington (radicaled)",
+	"ArthyChaux",
+	"azagaya",
+	"ballerburg9005",
+	"CheetoHead (greusser)",
+	"Christos Tsoychlakis (ChrisTs8920)",
+	"Clara Hobbs (Ratfink)",
+	"danielnaoexiste",
+	"Darshan Phaldesai (luiq54)",
+	"dasimonde",
+	"Dávid Gábor BODOR (dragonfi)",
+	"donte5405",
+	"Fayez Akhtar (Variable)",
+	"Gamespleasure",
+	"GrantMoyer",
+	"gschwind",
+	"Hamster5295",
+	"Haoyu Qiu (timothyqiu)",
+	"Hugo Locurcio (Calinou)",
+	"huskee",
+	"Igor Santarek (jegor377)",
+	"Ivan Kruger (haythamnikolaidis)",
+	"Jeremy Behreandt (behreajj)",
+	"John Jerome Romero (Wishdream)",
+	"JumpJetAvocado",
+	"Kawan Weege (Dwahgon)",
+	"kevinms",
+	"Kiisu-Master",
+	"Kinwailo",
+	"kleonc",
+	"Laurenz Reinthaler (Schweini07)",
+	"Marco Galli (Gaarco)",
+	"Mariano Semelman (msemelman)",
+	"Marquis Kurt (alicerunsonfedora)",
+	"Martin Novák (novhack)",
+	"Martin Zabinski (Martin1991zab)",
+	"Matheus Pesegoginski (MatheusPese)",
+	"Matteo Piovanelli (MatteoPiovanelli-Laser)",
+	"Matthew Paul (matthewpaul-us)",
+	"Michael Alexsander (YeldhamDev)",
+	"mrtripie",
+	"nicejammer",
+	"PinyaColada",
+	"Rémi Verschelde (akien-mga)",
+	"rob-a-bolton",
+	"RorotoSic",
+	"sapient_cogbag",
+	"Silent Orb (silentorb)",
+	"Subhang Nanduri (SbNanduri)",
+	"TheLsbt",
+	"THWLF",
+	"Vaibhav Kubre (kubre)",
+	"Vriska Weaver (henlo-birb)",
+]
 
 const TRANSLATORS_DICTIONARY := {
 	"Emmanouil Papadeas (Overloaded)": ["Greek"],
-	"Xenofon Konitsas (huskee)": ["Greek"],
+	"huskee": ["Greek"],
 	"Lena Louloudaki (Soliscital)": ["Greek"],
 	"Hugo Locurcio (Calinou)": ["French"],
 	"blackjoker77777": ["French"],
@@ -16,14 +80,24 @@ const TRANSLATORS_DICTIONARY := {
 	"Anne Onyme 017 (Anne17)": ["French"],
 	"Nicolas.C (nico57c)": ["French"],
 	"EGuillemot": ["French"],
+	"Roroto Sic (Roroto_Sic)": ["French"],
+	"ninjdai": ["French"],
+	"celeste tollec (celeste73-t)": ["French"],
 	"Schweini07": ["German"],
 	"Martin Zabinski (Martin1991zab)": ["German"],
 	"Manuel (DrMoebyus)": ["German"],
-	"Dawid Niedźwiedzki (tiritto) ": ["Polish"],
+	"Dominik K. (mezotv)": ["German"],
+	"alikin12": ["German"],
+	"Dawid Niedźwiedzki (tiritto)": ["Polish"],
 	"Serhiy Dmytryshyn (dies)": ["Polish"],
 	"Igor Santarek (jegor377)": ["Polish"],
 	"RainbowP": ["Polish"],
 	"Michał (molters.tv)": ["Polish"],
+	"Dandailo": ["Polish"],
+	"makabeus": ["Polish"],
+	"Donda": ["Polish"],
+	"Piotr Kostrzewski (piotrkostrzewski)": ["Polish"],
+	"Tmpod": ["Portuguese"],
 	"Michael Alexsander (YeldhamDev)": ["Brazilian Portuguese"],
 	"Cedulio Cezar (ceduliocezar)": ["Brazilian Portuguese"],
 	"Alexandre Oliveira (rockytvbr)": ["Brazilian Portuguese"],
@@ -35,21 +109,39 @@ const TRANSLATORS_DICTIONARY := {
 	"Luciano Salomoni (LucianoSalomoni)": ["Brazilian Portuguese"],
 	"Carlos A. G. Silva (CarloSilva)": ["Brazilian Portuguese"],
 	"Vitor Gabriel (Ranbut)": ["Brazilian Portuguese"],
+	"Geraldo PMJ (geraldopmj)": ["Brazilian Portuguese"],
+	"snorring_parrot": ["Brazilian Portuguese"],
+	"iLeonardito (iLeoww)": ["Brazilian Portuguese"],
+	"Heliana Moreira (helimoreira)": ["Brazilian Portuguese"],
 	"Andreev Andrei": ["Russian"],
 	"ax trifonov (ax34)": ["Russian"],
 	"Artem (blinovartem)": ["Russian"],
 	"Иван Соколов (SokoL1337)": ["Russian"],
 	"Daniil Belyakov (ermegil)": ["Russian"],
+	"Elijah Fronzak (pincetgore)": ["Russian"],
+	"toxidcheckery": ["Russian"],
 	"stomleny_cmok": ["Russian", "Ukrainian"],
 	"Bohdan Matviiv (BodaMat)": ["Ukrainian"],
-	"Ruslan Hryschuk (kifflow) ": ["Ukrainian"],
+	"Ruslan Hryschuk (kifflow)": ["Ukrainian"],
+	"Dmitry D (homecraft)": ["Ukrainian"],
+	"Misha Dyshlenko (lony_official)": ["Ukrainian"],
 	"Kinwailo": ["Chinese Traditional"],
 	"曹恩逢 (SiderealArt)": ["Chinese Traditional"],
+	"Aden Pun (adenpun2000)": ["Chinese Traditional"],
+	"NoahsarkTaiwan": ["Chinese Traditional"],
+	"EarthlyEric (EarthlyEric6)": ["Chinese Traditional"],
 	"Chenxu Wang": ["Chinese Simplified"],
 	"Catherine Yang (qzcyyw13)": ["Chinese Simplified"],
 	"王晨旭 (wcxu21)": ["Chinese Simplified"],
+	"Haruka Kasugano (Kasugano_0)": ["Chinese Simplified"],
+	"Peerin (Mrsjh)": ["Chinese Simplified"],
+	"ppphp": ["Chinese Simplified"],
+	"lxhzzy06": ["Chinese Simplified"],
+	"Mozt": ["Chinese Simplified"],
 	"Marco Galli (Gaarco)": ["Italian"],
 	"StarFang208": ["Italian"],
+	"Damiano Guida (damiano.guida22)": ["Italian"],
+	"albano battistella (albanobattistella)": ["Italian"],
 	"Azagaya VJ (azagaya.games)": ["Spanish"],
 	"Lilly And (KatieAnd)": ["Spanish"],
 	"UncleFangs": ["Spanish"],
@@ -59,8 +151,16 @@ const TRANSLATORS_DICTIONARY := {
 	"Javier Ocampos (Leedeo)": ["Spanish"],
 	"Art Leeman (artleeman)": ["Spanish"],
 	"DevCentu": ["Spanish"],
+	"Nunnito Nevermind (Nunnito)": ["Spanish"],
+	"_LuJaimes (Hannd)": ["Spanish"],
+	"Aleklons16 (Aleklons)": ["Spanish"],
+	"linux_user_mx": ["Spanish"],
+	"Quetzalcoutl (QuetzalcoutlDev)": ["Spanish"],
+	"Santiago (Zhamty)": ["Spanish"],
+	"Jesus Lavado (jess_lav)": ["Spanish"],
+	"Alejandro Moctezuma (AlejandroMoc)": ["Spanish"],
 	"Seifer23": ["Catalan"],
-	"Joel García Cascalló (jocsencat) ": ["Catalan"],
+	"Joel García Cascalló (jocsencat)": ["Catalan"],
 	"Agnis Aldiņš (NeZvers)": ["Latvian"],
 	"Edgars Korns (Eddy11)": ["Latvian"],
 	"Teashrock": ["Esperanto"],
@@ -68,9 +168,10 @@ const TRANSLATORS_DICTIONARY := {
 	"NoahParaduck": ["Indonesian"],
 	"Channeling": ["Indonesian"],
 	"heydootdoot": ["Indonesian"],
+	"elidelid": ["Indonesian"],
 	"Martin Novák (novhack)": ["Czech"],
 	"Lullius": ["Norwegian Bokmål"],
-	"Aninuscsalas": ["Hungarian"],
+	"Aninus Partikler (aninuscsalas)": ["Hungarian"],
 	"jaehyeon1090": ["Korean"],
 	"sfun_G": ["Korean"],
 	"KripC2160": ["Korean", "Japanese"],
@@ -78,6 +179,7 @@ const TRANSLATORS_DICTIONARY := {
 	"Motomo.exe": ["Japanese"],
 	"hebekeg": ["Japanese"],
 	"M. Gabriel Lup": ["Romanian"],
+	"Robert Banks (robert-banks)": ["Romanian", "Polish"],
 	"ANormalKnife": ["Turkish"],
 	"kmsecer": ["Turkish"],
 	"Rıdvan SAYLAR": ["Turkish"],
@@ -89,7 +191,11 @@ const TRANSLATORS_DICTIONARY := {
 	"Ferhat Geçdoğan (ferhatgec)": ["Turkish"],
 	"designy": ["Turkish"],
 	"libre ajans (libreajans)": ["Turkish"],
+	"Sabri Ünal (yakushabb)": ["Turkish"],
+	"Lucifer25x": ["Turkish"],
 	"CaelusV": ["Danish"],
+	"Jonas Vejlin (jonas.vejlin)": ["Danish"],
+	"Cat (cultcats)": ["Danish"],
 	"GGIEnrike":
 	[
 		"Romanian",
@@ -102,52 +208,78 @@ const TRANSLATORS_DICTIONARY := {
 	],
 }
 
-export(Array, String, MULTILINE) var licenses: Array
+const DONORS: PackedStringArray = [
+	"BasicIncomePlz",
+	"Benedikt",
+	"Hugo Locurcio",
+	"Jérôme P.",
+	"Jonas Rudlang",
+	"Mike King",
+	"ShikadiGum",
+	"Tassos Kyriakopoulos",
+	"Πολιτισμός Τύπου 1",
+	"Ormanus"
+]
 
-onready var credits = $AboutUI/Credits
-onready var groups: Tree = $AboutUI/Credits/Groups
-onready var developer_container = $AboutUI/Credits/Developers
-onready var contributors_container = $AboutUI/Credits/Contributors
-onready var donors_container = $AboutUI/Credits/Donors
-onready var translators_container = $AboutUI/Credits/Translators
-onready var licenses_container = $AboutUI/Credits/Licenses
+@export_multiline var licenses: PackedStringArray
 
-onready var developers: Tree = $AboutUI/Credits/Developers/DeveloperTree
-onready var contributors: Tree = $AboutUI/Credits/Contributors/ContributorTree
-onready var donors: Tree = $AboutUI/Credits/Donors/DonorTree
-onready var translators: Tree = $AboutUI/Credits/Translators/TranslatorTree
-
-onready var license_text: TextEdit = $AboutUI/Credits/Licenses/LicenseText
-
-onready var slogan: Label = $AboutUI/IconsButtons/SloganAndLinks/VBoxContainer/PixeloramaSlogan
-onready var copyright_label: Label = $AboutUI/Copyright
+@onready var credits := $AboutUI/Credits as HSplitContainer
+@onready var groups := $AboutUI/Credits/Groups as Tree
+@onready var authors_container := $AboutUI/Credits/Authors as VBoxContainer
+@onready var donors_container := $AboutUI/Credits/Donors as VBoxContainer
+@onready var translators_container := $AboutUI/Credits/Translators as VBoxContainer
+@onready var licenses_container := $AboutUI/Credits/Licenses as VBoxContainer
+@onready var authors := $AboutUI/Credits/Authors/AuthorTree as Tree
+@onready var donors := $AboutUI/Credits/Donors/DonorTree as Tree
+@onready var translators := $AboutUI/Credits/Translators/TranslatorTree as Tree
+@onready var license_tabs := $AboutUI/Credits/Licenses/LicenseTabs as TabBar
+@onready var license_text := $AboutUI/Credits/Licenses/LicenseText as TextEdit
+@onready var pixelorama_slogan := (
+	$AboutUI/IconsButtons/SloganAndLinks/VBoxContainer/PixeloramaSlogan as Label
+)
+@onready var copyright_label := $AboutUI/Copyright as Label
 
 
 func _ready() -> void:
+	pixelorama_slogan.label_settings.font_color = get_theme_color(&"font_color", &"Label")
+	copyright_label.label_settings.font_color = get_theme_color(&"font_color", &"Label")
 	create_donors()
-	create_contributors()
-	var license_buttons_container = $AboutUI/Credits/Licenses/LicenseButtonsContainer
-	for button in license_buttons_container.get_children():
-		button.connect("pressed", self, "_on_LicenseButton_pressed", [button.get_index()])
+	license_tabs.add_tab("Pixelorama")
+	license_tabs.add_tab("Godot")
+	license_tabs.add_tab("FreeType")
+	license_tabs.add_tab("mbed TLS")
+	license_tabs.add_tab("Keychain")
+	license_tabs.add_tab("Roboto")
+	license_tabs.add_tab("Dockable Container")
+	license_tabs.add_tab("aimgio")
+	license_tabs.add_tab("godot-gdgifexporter")
+	license_tabs.add_tab("cleanEdge")
+	license_tabs.add_tab("OmniScale")
+	license_tabs.add_tab("gd-obj")
 	license_text.text = licenses[0]
 
 
+func _notification(what: int) -> void:
+	if not is_instance_valid(pixelorama_slogan):
+		return
+	if what == NOTIFICATION_THEME_CHANGED:
+		pixelorama_slogan.label_settings.font_color = get_theme_color(&"font_color", &"Label")
+		copyright_label.label_settings.font_color = get_theme_color(&"font_color", &"Label")
+
+
 func _on_AboutDialog_about_to_show() -> void:
-	window_title = tr("About Pixelorama") + " " + Global.current_version
+	title = tr("About Pixelorama") + " " + Global.current_version
 
 	var groups_root := groups.create_item()
-	var developers_button := groups.create_item(groups_root)
-	var contributors_button := groups.create_item(groups_root)
+	#var developers_button := groups.create_item(groups_root)
+	var authors_button := groups.create_item(groups_root)
 	var donors_button := groups.create_item(groups_root)
 	var translators_button := groups.create_item(groups_root)
 	var licenses_button := groups.create_item(groups_root)
-
-	developers_button.set_text(0, "  " + tr("Developers"))
+	authors_button.set_text(0, "  " + tr("Authors"))
 	# We use metadata to avoid being affected by translations
-	developers_button.set_metadata(0, "Developers")
-	developers_button.select(0)
-	contributors_button.set_text(0, "  " + tr("Contributors"))
-	contributors_button.set_metadata(0, "Contributors")
+	authors_button.set_metadata(0, "Authors")
+	authors_button.select(0)
 	donors_button.set_text(0, "  " + tr("Donors"))
 	donors_button.set_metadata(0, "Donors")
 	translators_button.set_text(0, "  " + tr("Translators"))
@@ -155,14 +287,17 @@ func _on_AboutDialog_about_to_show() -> void:
 	licenses_button.set_text(0, "  " + tr("Licenses"))
 	licenses_button.set_metadata(0, "Licenses")
 
-	create_developers()
+	create_authors()
 	create_translators()
 
 
-func _on_AboutDialog_popup_hide() -> void:
+func _on_visibility_changed() -> void:
+	if visible:
+		return
 	groups.clear()
-	developers.clear()
+	authors.clear()
 	translators.clear()
+	Global.dialog_open(false)
 
 
 func _on_Groups_item_selected() -> void:
@@ -171,10 +306,8 @@ func _on_Groups_item_selected() -> void:
 			child.visible = false
 
 	var selected: String = groups.get_selected().get_metadata(0)
-	if "Developers" in selected:
-		developer_container.visible = true
-	elif "Contributors" in selected:
-		contributors_container.visible = true
+	if "Authors" in selected:
+		authors_container.visible = true
 	elif "Donors" in selected:
 		donors_container.visible = true
 	elif "Translators" in selected:
@@ -191,89 +324,20 @@ func _on_GitHub_pressed() -> void:
 	OS.shell_open("https://github.com/Orama-Interactive/Pixelorama")
 
 
-func _on_Donate_pressed() -> void:
-	OS.shell_open("https://www.patreon.com/OramaInteractive")
-
-
-func _on_LicenseButton_pressed(index: int) -> void:
-	license_text.text = licenses[index]
-
-
-func create_developers() -> void:
-	var dev_root := developers.create_item()
-	developers.create_item(dev_root).set_text(
-		0, "  Emmanouil Papadeas (Overloaded) - " + tr("Lead Programmer")
-	)
-	developers.create_item(dev_root).set_text(0, "  John Nikitakis (Erevos) - " + tr("UI Designer"))
-
-
 func create_donors() -> void:
 	var donors_root := donors.create_item()
-	donors.create_item(donors_root).set_text(0, "  pcmxms - https://www.nonamefornowsoft.com.br/")
-	donors.create_item(donors_root).set_text(0, "  Mike King")
-	donors.create_item(donors_root).set_text(0, "  Guillaume Gautier")
-	donors.create_item(donors_root).set_text(0, "  Hugo Locurcio")
-	donors.create_item(donors_root).set_text(0, "  MysteryStudio")
-	donors.create_item(donors_root).set_text(0, "  Ryan C. Gordon (icculus)")
-	donors.create_item(donors_root).set_text(0, "  Benedikt")
-	donors.create_item(donors_root).set_text(0, "  David Maziarka")
-	donors.create_item(donors_root).set_text(0, "  Jonas Rudlang")
-	donors.create_item(donors_root).set_text(0, "  ShikadiGum")
-	donors.create_item(donors_root).set_text(0, "  pookey")
+	for donor in DONORS:
+		donors.create_item(donors_root).set_text(0, "  " + donor)
 
 
-func create_contributors() -> void:
-	var contributor_root := contributors.create_item()
-	contributors.create_item(contributor_root).set_text(0, "  Fayez Akhtar (Variable)")
-	contributors.create_item(contributor_root).set_text(0, "  Hugo Locurcio (Calinou)")
-	contributors.create_item(contributor_root).set_text(0, "  CheetoHead (greusser)")
-	contributors.create_item(contributor_root).set_text(0, "  Michael Alexsander (YeldhamDev)")
-	contributors.create_item(contributor_root).set_text(0, "  Martin Novák (novhack)")
-	contributors.create_item(contributor_root).set_text(0, "  Laurenz Reinthaler (Schweini07)")
-	contributors.create_item(contributor_root).set_text(0, "  Darshan Phaldesai (luiq54)")
-	contributors.create_item(contributor_root).set_text(0, "  mrtripie")
-	contributors.create_item(contributor_root).set_text(0, "  kleonc")
-	contributors.create_item(contributor_root).set_text(0, "  azagaya")
-	contributors.create_item(contributor_root).set_text(0, "  Kinwailo")
-	contributors.create_item(contributor_root).set_text(0, "  Igor Santarek (jegor377)")
-	contributors.create_item(contributor_root).set_text(0, "  Xenofon Konitsas (huskee)")
-	contributors.create_item(contributor_root).set_text(0, "  Martin Zabinski (Martin1991zab)")
-	contributors.create_item(contributor_root).set_text(0, "  Marco Galli (Gaarco)")
-	contributors.create_item(contributor_root).set_text(0, "  Matheus Pesegoginski (MatheusPese)")
-	contributors.create_item(contributor_root).set_text(0, "  AbhinavKDev (abhinav3967)")
-	contributors.create_item(contributor_root).set_text(0, "  sapient_cogbag")
-	contributors.create_item(contributor_root).set_text(0, "  dasimonde")
-	contributors.create_item(contributor_root).set_text(0, "  Matthew Paul (matthewpaul-us)")
-	contributors.create_item(contributor_root).set_text(0, "  danielnaoexiste")
-	contributors.create_item(contributor_root).set_text(0, "  20kdc")
-	contributors.create_item(contributor_root).set_text(0, "  PinyaColada")
-	contributors.create_item(contributor_root).set_text(0, "  Subhang Nanduri (SbNanduri)")
-	contributors.create_item(contributor_root).set_text(0, "  Dávid Gábor BODOR (dragonfi)")
-	contributors.create_item(contributor_root).set_text(0, "  John Jerome Romero (Wishdream)")
-	contributors.create_item(contributor_root).set_text(0, "  Andreev Andrei")
-	contributors.create_item(contributor_root).set_text(0, "  Aaron Franke (aaronfranke)")
-	contributors.create_item(contributor_root).set_text(0, "  rob-a-bolton")
-	contributors.create_item(contributor_root).set_text(0, "  Vriska Weaver (henlo-birb)")
-	contributors.create_item(contributor_root).set_text(0, "  Rémi Verschelde (akien-mga)")
-	contributors.create_item(contributor_root).set_text(0, "  gschwind")
-	contributors.create_item(contributor_root).set_text(0, "  THWLF")
-	contributors.create_item(contributor_root).set_text(0, "  Gamespleasure")
-	contributors.create_item(contributor_root).set_text(0, "  ballerburg9005")
-	contributors.create_item(contributor_root).set_text(0, "  Kawan Weege (Dwahgon)")
-	contributors.create_item(contributor_root).set_text(0, "  kevinms")
-	contributors.create_item(contributor_root).set_text(0, "  Álex Román Núñez (EIREXE)")
-	contributors.create_item(contributor_root).set_text(0, "  Jeremy Behreandt (behreajj)")
-	contributors.create_item(contributor_root).set_text(0, "  Marquis Kurt (alicerunsonfedora)")
-	contributors.create_item(contributor_root).set_text(0, "  Silent Orb (silentorb)")
-	contributors.create_item(contributor_root).set_text(0, "  JumpJetAvocado")
-	contributors.create_item(contributor_root).set_text(0, "  ArthyChaux")
-	contributors.create_item(contributor_root).set_text(0, "  AlphinAlbukhari")
-	contributors.create_item(contributor_root).set_text(
-		0, "  Matteo Piovanelli (MatteoPiovanelli-Laser)"
+func create_authors() -> void:
+	var author_root := authors.create_item()
+	authors.create_item(author_root).set_text(
+		0, "  Emmanouil Papadeas (Overloaded) - " + tr("Lead Developer")
 	)
-	contributors.create_item(contributor_root).set_text(0, "  Haoyu Qiu (timothyqiu)")
-	contributors.create_item(contributor_root).set_text(0, "  GrantMoyer")
-	contributors.create_item(contributor_root).set_text(0, "  Arron Washington (radicaled)")
+	authors.create_item(author_root).set_text(0, "  John Nikitakis (Erevos) - " + tr("UI Designer"))
+	for author in AUTHORS:
+		authors.create_item(author_root).set_text(0, "  " + author)
 
 
 func create_translators() -> void:
@@ -290,3 +354,11 @@ func create_translators() -> void:
 
 		var text := "  %s - %s" % [translator, language_string]
 		translators.create_item(translators_root).set_text(0, text)
+
+
+func _on_LicenseTabs_tab_changed(tab: int) -> void:
+	license_text.text = licenses[tab]
+
+
+func _on_close_requested() -> void:
+	hide()

@@ -1,25 +1,26 @@
 extends Node
-# Code taken and modified from https://github.com/Pukkah/HTML5-File-Exchange-for-Godot
-# Thanks to Pukkah from GitHub for providing the original code
+## Code taken and modified from https://github.com/Pukkah/HTML5-File-Exchange-for-Godot
+## Thanks to Pukkah from GitHub for providing the original code
 
 signal in_focus
-signal image_loaded  # emits a signal for returning loaded image info
+signal image_loaded  ## Emits a signal for returning loaded image info
 
 
 func _ready() -> void:
-	if OS.get_name() == "HTML5" and OS.has_feature("JavaScript"):
+	if OS.has_feature("web"):
 		_define_js()
 
 
-func _notification(notification: int) -> void:
-	if notification == MainLoop.NOTIFICATION_WM_FOCUS_IN:
-		emit_signal("in_focus")
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		in_focus.emit()
 
 
 func _define_js() -> void:
-	# Define JS script
-	JavaScript.eval(
-		"""
+	(
+		JavaScriptBridge
+		. eval(
+			"""
 	var fileData;
 	var fileType;
 	var fileName;
@@ -28,7 +29,9 @@ func _define_js() -> void:
 		canceled = true;
 		var input = document.createElement('INPUT');
 		input.setAttribute("type", "file");
-		input.setAttribute("accept", "image/png, image/jpeg, image/webp");
+		input.setAttribute(
+			"accept", ".pxo, image/png, image/jpeg, image/webp, image/bmp, image/x-tga"
+		);
 		input.click();
 		input.addEventListener('change', event => {
 			if (event.target.files.length > 0){
@@ -67,40 +70,38 @@ func _define_js() -> void:
 		});
 	}
 	""",
-		true
+			true
+		)
 	)
 
 
-# If (load_directly = false) then image info (image and it's name)
-# will not be directly farwarded it to OpenSave
-func load_image(load_directly := true):
-	if OS.get_name() != "HTML5" or !OS.has_feature("JavaScript"):
+## If (load_directly = false) then image info (image and its name)
+## will not be directly forwarded it to OpenSave
+func load_image(load_directly := true) -> void:
+	if !OS.has_feature("web"):
 		return
-
 	# Execute JS function
-	JavaScript.eval("upload_image();", true)  # Opens prompt for choosing file
+	JavaScriptBridge.eval("upload_image();", true)  # Opens prompt for choosing file
+	await in_focus  # Wait until JS prompt is closed
+	await get_tree().create_timer(0.5).timeout  # Give some time for async JS data load
 
-	yield(self, "in_focus")  # Wait until JS prompt is closed
-
-	yield(get_tree().create_timer(0.5), "timeout")  # Give some time for async JS data load
-
-	if JavaScript.eval("canceled;", true):  # If File Dialog closed w/o file
+	if JavaScriptBridge.eval("canceled;", true) == 1:  # If File Dialog closed w/o file
 		return
 
 	# Use data from png data
-	var image_data
+	var image_data: PackedByteArray
 	while true:
-		image_data = JavaScript.eval("fileData;", true)
+		image_data = JavaScriptBridge.eval("fileData;", true)
 		if image_data != null:
 			break
-		yield(get_tree().create_timer(1.0), "timeout")  # Need more time to load data
+		await get_tree().create_timer(1.0).timeout  # Need more time to load data
 
-	var image_type = JavaScript.eval("fileType;", true)
-	var image_name = JavaScript.eval("fileName;", true)
+	var image_type: String = JavaScriptBridge.eval("fileType;", true)
+	var image_name: String = JavaScriptBridge.eval("fileName;", true)
 
-	var image = Image.new()
-	var image_error
-	var image_info: Dictionary = {}
+	var image := Image.new()
+	var image_error: Error
+	var image_info := {}
 	match image_type:
 		"image/png":
 			if load_directly:
@@ -117,7 +118,19 @@ func load_image(load_directly := true):
 			image_error = image.load_jpg_from_buffer(image_data)
 		"image/webp":
 			image_error = image.load_webp_from_buffer(image_data)
+		"image/bmp":
+			image_error = image.load_bmp_from_buffer(image_data)
+		"image/x-tga":
+			image_error = image.load_tga_from_buffer(image_data)
 		var invalid_type:
+			if image_name.get_extension().to_lower() == "pxo":
+				var temp_file_path := "user://%s" % image_name
+				var temp_file := FileAccess.open(temp_file_path, FileAccess.WRITE)
+				temp_file.store_buffer(image_data)
+				temp_file.close()
+				OpenSave.open_pxo_file(temp_file_path)
+				DirAccess.remove_absolute(temp_file_path)
+				return
 			print("Invalid type: " + invalid_type)
 			return
 	if image_error:
@@ -127,36 +140,36 @@ func load_image(load_directly := true):
 		image_info = {"image": image, "name": image_name}
 		if load_directly:
 			OpenSave.handle_loading_image(image_name, image)
-	emit_signal("image_loaded", image_info)
+	image_loaded.emit(image_info)
 
 
 func load_shader() -> void:
-	if OS.get_name() != "HTML5" or !OS.has_feature("JavaScript"):
+	if !OS.has_feature("web"):
 		return
 
 	# Execute JS function
-	JavaScript.eval("upload_shader();", true)  # Opens prompt for choosing file
+	JavaScriptBridge.eval("upload_shader();", true)  # Opens prompt for choosing file
 
-	yield(self, "in_focus")  # Wait until JS prompt is closed
+	await in_focus  # Wait until JS prompt is closed
+	await get_tree().create_timer(0.5).timeout  # Give some time for async JS data load
 
-	yield(get_tree().create_timer(0.5), "timeout")  # Give some time for async JS data load
-
-	if JavaScript.eval("canceled;", true):  # If File Dialog closed w/o file
+	if JavaScriptBridge.eval("canceled;", true):  # If File Dialog closed w/o file
 		return
 
 	# Use data from png data
 	var file_data
 	while true:
-		file_data = JavaScript.eval("fileData;", true)
+		file_data = JavaScriptBridge.eval("fileData;", true)
 		if file_data != null:
 			break
-		yield(get_tree().create_timer(1.0), "timeout")  # Need more time to load data
+		await get_tree().create_timer(1.0).timeout  # Need more time to load data
 
-#	var file_type = JavaScript.eval("fileType;", true)
-	var file_name = JavaScript.eval("fileName;", true)
+#	var file_type = JavaScriptBridge.eval("fileType;", true)
+	var file_name = JavaScriptBridge.eval("fileName;", true)
 
-	var shader = Shader.new()
+	var shader := Shader.new()
 	shader.code = file_data
 
 	var shader_effect_dialog = Global.control.get_node("Dialogs/ImageEffects/ShaderEffect")
-	shader_effect_dialog.change_shader(shader, file_name.get_basename())
+	if is_instance_valid(shader_effect_dialog):
+		shader_effect_dialog.change_shader(shader, file_name.get_basename())

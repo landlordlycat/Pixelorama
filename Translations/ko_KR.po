@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
-"PO-Revision-Date: 2022-09-19 21:29\n"
+"PO-Revision-Date: 2024-11-15 17:31\n"
 
 msgid "OK"
 msgstr "예"
@@ -93,8 +93,15 @@ msgstr "저장하기..."
 msgid "Save as..."
 msgstr "다른 이름으로 저장하기..."
 
-msgid "Use ZSTD Compression"
-msgstr "ZSTD 압축 사용"
+#. Checkbox found in the Save project dialog. If enabled, the final blended images are being stored also in the pxo, for each frame.
+msgid "Include blended images"
+msgstr ""
+
+#. Hint tooltip of the "Include blended images" checkbox found in the Save project dialog.
+msgid "If enabled, the final blended images are also being stored in the pxo, for each frame.\n"
+"This makes the pxo file larger and is useful for importing by third-party software\n"
+"or CLI exporting. Loading pxo files in Pixelorama does not need this option to be enabled."
+msgstr ""
 
 msgid "Import"
 msgstr "불러오기"
@@ -141,6 +148,13 @@ msgstr ""
 msgid "Delete"
 msgstr "삭제"
 
+msgid "Delete Permanently"
+msgstr "영구 삭제"
+
+#. Found when requesting to delete a palette or an extension. Refers to when you move something to recycle bin.
+msgid "Move to Trash"
+msgstr ""
+
 msgid "New Brush"
 msgstr "새 브러시"
 
@@ -153,19 +167,38 @@ msgstr "픽셀"
 msgid "Percentage"
 msgstr "비율"
 
-msgid "Crop Image"
-msgstr "이미지 자르기"
+#. Found in the image menu. Sets the size of the project to be the same as the size of the active selection.
+msgid "Crop to Selection"
+msgstr ""
+
+#. Found in the image menu. Automatically trims out all the transparent pixels, making the image smaller.
+msgid "Crop to Content"
+msgstr ""
 
 msgid "Resize Canvas"
 msgstr "캔버스 크기 조정"
 
-msgid "Centralize Image"
-msgstr "이미지 중앙 집중화"
+msgid "Offset Image"
+msgstr ""
+
+msgid "Offset:"
+msgstr ""
+
+#. Found in the Offset Image dialog. It's a checkbox that, if enabled, wraps around the image if pixels go out of canvas bounds.
+msgid "Wrap around:"
+msgstr ""
+
+#. Found in the menu that appears when you right click a frame button. Center is a verb, it is used to place the content of the frame to the center of the canvas.
+msgid "Center Frames"
+msgstr ""
 
 msgid "Rotate Image"
 msgstr "이미지 회전"
 
-msgid "Pivot (x, y):"
+msgid "Pivot x:"
+msgstr ""
+
+msgid "Pivot y:"
 msgstr ""
 
 msgid "Smear options:"
@@ -183,8 +216,45 @@ msgstr "초기화"
 msgid "Invert"
 msgstr "반전"
 
-msgid "Grayscale View"
+msgid "Modify"
 msgstr ""
+
+#. Found under the Select menu, in the Modify submenu. When selected, it shows a window that lets users expand the active selection.
+msgid "Expand"
+msgstr ""
+
+#. Title of a window that lets users expand the active selection.
+msgid "Expand Selection"
+msgstr ""
+
+#. Found under the Select menu, in the Modify submenu. When selected, it shows a window that lets users shrink the active selection.
+msgid "Shrink"
+msgstr ""
+
+#. Title of a window that lets users shrink the active selection.
+msgid "Shrink Selection"
+msgstr ""
+
+#. Found under the Select menu, in the Modify submenu. When selected, it shows a window that lets users create a border of the active selection.
+msgid "Border"
+msgstr ""
+
+#. Title of a window that lets users create a border of the active selection.
+msgid "Border Selection"
+msgstr ""
+
+#. Refers to a diamond-like shape.
+msgid "Diamond"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Grayscale View"
+msgstr "흑백 뷰"
 
 msgid "Mirror Image"
 msgstr "미러 이미지"
@@ -198,25 +268,26 @@ msgstr "상하 대칭"
 msgid "Preferences"
 msgstr "환경설정"
 
+#. An option in the View menu. When selected, the canvas is being placed on the center of the screen.
+msgid "Center Canvas"
+msgstr ""
+
 msgid "Tile Mode"
 msgstr "타일 모드"
 
 msgid "Tile Mode Offsets"
 msgstr ""
 
-msgid "X-basis x:"
+#. Found under "Tile Mode Offsets". Basis is a linear algebra term. https://en.wikipedia.org/wiki/Basis_(linear_algebra)
+msgid "X-basis:"
 msgstr ""
 
-msgid "X-basis y:"
+#. Found under "Tile Mode Offsets". Basis is a linear algebra term. https://en.wikipedia.org/wiki/Basis_(linear_algebra)
+msgid "Y-basis:"
 msgstr ""
 
-msgid "Y-basis x:"
-msgstr ""
-
-msgid "Y-basis y:"
-msgstr ""
-
-msgid "Tile Mask"
+#. Found under "Tile Mode Offsets". It's a button that when pressed, enables masking for tile mode. Masking essentially limits drawing to the visible pixels of the image, thus preventing from drawing on transparent pixels.
+msgid "Masking:"
 msgstr ""
 
 msgid "Reset"
@@ -249,14 +320,36 @@ msgstr "가동 패널"
 msgid "Manage Layouts"
 msgstr "레이아웃 관리"
 
+#. Noun, a preview of something
+msgid "Preview"
+msgstr "미리보기"
+
+#. Found in the manage layouts dialog
+msgid "This is a preview, changing this won't change the layout"
+msgstr ""
+
+#. Found in the manage layouts dialog
+msgid "Double click to set as new startup layout"
+msgstr ""
+
 msgid "Add"
 msgstr "추가"
 
 msgid "Add Layout"
 msgstr "레이아웃 추가"
 
-msgid "Edit Layout"
-msgstr "레이아웃 수정"
+msgid "Copy from"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Rename Layout"
+msgstr ""
+
+#. Refers to the current layout of the user interface.
+msgid "Current layout"
+msgstr ""
 
 msgid "Are you sure you want to delete this layout?"
 msgstr "이 레이아웃을 삭제하고 싶습니까?"
@@ -285,6 +378,34 @@ msgstr "눈금자 표시"
 msgid "Show Guides"
 msgstr "안내선 표시"
 
+#. Found under the View menu.
+msgid "Show Mouse Guides"
+msgstr ""
+
+#. Found under the View menu. When enabled, non-destructive layer effects will be visible on the canvas.
+msgid "Display Layer Effects"
+msgstr ""
+
+#. Found under the View menu.
+msgid "Snap To"
+msgstr ""
+
+#. Found under the View menu.
+msgid "Snap to Rectangular Grid Boundary"
+msgstr ""
+
+#. Found under the View menu.
+msgid "Snap to Rectangular Grid Center"
+msgstr ""
+
+#. Found under the View menu.
+msgid "Snap to Guides"
+msgstr ""
+
+#. Found under the View menu.
+msgid "Snap to Perspective Guides"
+msgstr ""
+
 msgid "Show Animation Timeline"
 msgstr "애니메이션 타임라인 보기"
 
@@ -309,6 +430,7 @@ msgstr "불러오기 옵션"
 msgid "Import as:"
 msgstr "다음으로 가져오기:"
 
+#. Found in the preview image dialog, which appears when importing an image file.
 msgid "Apply to all"
 msgstr "모두 적용"
 
@@ -318,20 +440,26 @@ msgstr "최근 프로잭트"
 msgid "New project"
 msgstr "신규 프로젝트"
 
+#. Found in the preview image dialog, which appears when importing an image file.
 msgid "Spritesheet (new project)"
 msgstr "스프레드시트 (새 프로젝트)"
 
+#. Found in the preview image dialog, which appears when importing an image file.
 msgid "Spritesheet (new layer)"
 msgstr "스프레드시트 (새 레이어)"
 
 msgid "New frame"
 msgstr "새 프레임"
 
-msgid "Replace frame"
-msgstr "프레임 변경"
+#. Found in the preview image dialog, which appears when importing an image file.
+msgid "Replace cel"
+msgstr ""
 
 msgid "New layer"
 msgstr "새 레이어"
+
+msgid "New reference image"
+msgstr ""
 
 msgid "New palette"
 msgstr "새 팔레트"
@@ -348,8 +476,35 @@ msgstr "가로축 프레임:"
 msgid "Vertical frames:"
 msgstr "세로축 프레임:"
 
+#. Found in the preview image dialog, which appears when importing an image file. This option appears when the image is being imported as a spritesheet. If it's enabled, the software will slice it into frames automatically.
+msgid "Smart Slice"
+msgstr ""
+
+#. A value that is a threshold
+msgid "Threshold:"
+msgstr ""
+
+#. Found in the preview image dialog, which appears when importing an image file. This option appears when the image is being imported as a spritesheet, if "smart slice" is enabled. Hint tooltip of the "Threshold" value slider.
+msgid "Images that have any one side smaller than this value will cross the threshold"
+msgstr ""
+
+#. Found in the preview image dialog, which appears when importing an image file. This option appears when the image is being imported as a spritesheet, if "smart slice" is enabled. Merge is an adjective, it refers to the distance where images get merged.
+msgid "Merge distance:"
+msgstr ""
+
+#. Found in the preview image dialog, which appears when importing an image file. This option appears when the image is being imported as a spritesheet, if "smart slice" is enabled. Hint tooltip of the "Merge distance" value slider.
+msgid "Images which crossed the threshold will get merged into a larger image, if they are within this distance"
+msgstr ""
+
+#. A button that, when pressed, refreshes something. Used to apply certain settings again after they changed. Currently it's only used in the preview image dialog, which appears when importing an image file. This option appears when the image is being imported as a spritesheet, if "smart slice" is enabled.
+msgid "Refresh"
+msgstr ""
+
 msgid "Start frame:"
 msgstr "시작 프레임:"
+
+msgid "End frame:"
+msgstr ""
 
 msgid "At frame:"
 msgstr "프레임:"
@@ -381,8 +536,9 @@ msgstr "스프라이트 내보내기"
 msgid "File Exists, Overwrite?"
 msgstr "파일이 이미 존재합니다, 덮어씌우시겠습니까?"
 
-msgid "File %s already exists. Overwrite?"
-msgstr "파일 %s이(가) 이미 존재합니다. 덮어씌우시겠습니까?"
+msgid "The following files already exist. Do you wish to overwrite them?\n"
+"%s"
+msgstr ""
 
 msgid "Directory path is not valid!"
 msgstr "경로가 유효 하지 않습니다."
@@ -439,6 +595,10 @@ msgstr "찾아보기"
 msgid "Resize:"
 msgstr "크기 조정"
 
+#. Found in the export dialog, when exporting a jpeg file. Refers to the quality of the exported file.
+msgid "Quality:"
+msgstr ""
+
 msgid "Cancel Export"
 msgstr "내보내기 취소"
 
@@ -451,14 +611,35 @@ msgstr "현 폴더 선택"
 msgid "Open a Directory"
 msgstr "디렉토리 열기"
 
-msgid "All frames as multiple files"
-msgstr "모든 프레임을 여러 파일로"
-
-msgid "All frames as a single file animation"
-msgstr "모든 프레임을 하나의 파일로"
-
 msgid "Background:"
 msgstr "배경:"
+
+#. Found in the export dialog
+msgid "Selected frames"
+msgstr ""
+
+msgid "Layers:"
+msgstr "레이어:"
+
+#. Found in the export dialog
+msgid "Visible layers"
+msgstr ""
+
+#. Found in the export dialog
+msgid "Selected layers"
+msgstr ""
+
+#. A type of layer. A pixel layer is the most common type of layer, which stores image data in pixels.
+msgid "Pixel layer:"
+msgstr ""
+
+#. A type of layer. A group layer stores other layers as its children, similar to how a folder holds files.
+msgid "Group layer:"
+msgstr ""
+
+#. A type of layer. A 3D layer contains data of 3D objects that are rasterized automatically by Pixelorama.
+msgid "3D layer:"
+msgstr "3D 레이어:"
 
 msgid "Direction:"
 msgstr "방향:"
@@ -484,8 +665,38 @@ msgstr "행"
 msgid "Rows:"
 msgstr "행:"
 
+#. Found in the export dialog, in the Spritesheet tab. An orientation option that splits the spritesheet by animation tags. Each tag creates a new column.
+msgid "Tags by column"
+msgstr ""
+
+#. Found in the export dialog, in the Spritesheet tab. An orientation option that splits the spritesheet by animation tags. Each tag creates a new row.
+msgid "Tags by row"
+msgstr ""
+
+#. Found in the export dialog. It is a label that says the dimensions (widthxheight) of the exported image(s).
+msgid "Export dimensions:"
+msgstr ""
+
+msgid "Save a File"
+msgstr ""
+
+msgid "Go to previous folder."
+msgstr ""
+
+msgid "Go to next folder."
+msgstr ""
+
+msgid "Go to parent folder."
+msgstr ""
+
 msgid "Path:"
 msgstr "경로:"
+
+msgid "Refresh files."
+msgstr ""
+
+msgid "Toggle the visibility of hidden files."
+msgstr ""
 
 msgid "Directories & Files:"
 msgstr "디렉토리 & 파일:"
@@ -495,6 +706,58 @@ msgstr "폴더 생성"
 
 msgid "File:"
 msgstr "파일:"
+
+#. Found in "Open" and "Save" file dialogs. Searches all file types.
+msgid "All Files"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches all file types supported by Pixelorama.
+msgid "All Recognized"
+msgstr ""
+
+#. Found in "Open" and "Save" file dialogs. Searches Pixelorama Project files only (.pxo).
+msgid "Pixelorama Project"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches PNG files only. (Note that PNG is a file type and should remain untranslated)
+msgid "PNG Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches BMP files only. (Note that BMP is a file type and should remain untranslated)
+msgid "BMP Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches "Radiance HDR" files only. (Note that "Radiance HDR" is a file type and is better untranslated)
+msgid "Radiance HDR Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches JPEG files only. (Note that JPEG is a file type and should remain untranslated)
+msgid "JPEG Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches SVG files only. (Note that SVG is a file type and should remain untranslated)
+msgid "SVG Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches TGA files only. (Note that TGA is a file type and should remain untranslated)
+msgid "TGA Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches WebP files only. (Note that WebP is a file type and should remain untranslated)
+msgid "WebP Image"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches Pixelorama palette files only (.json).
+msgid "Pixelorama palette"
+msgstr ""
+
+#. Found in the "Open" file dialog. Searches GIMP palette files only (.gpl). (Note that GIMP is a software and should remain untranslated)
+msgid "GIMP palette"
+msgstr ""
+
+#. Found in the export dialog. It is a button that when pressed, shows more options.
+msgid "Advanced options"
+msgstr ""
 
 msgid "Interpolation:"
 msgstr "보간:"
@@ -514,6 +777,14 @@ msgstr "Trilinear"
 msgid "Constant"
 msgstr "고정"
 
+#. Refers to https://en.wikipedia.org/wiki/Color_space
+msgid "Color space:"
+msgstr ""
+
+#. A type of color space.
+msgid "Linear sRGB"
+msgstr ""
+
 msgid "General"
 msgstr "일반적"
 
@@ -532,6 +803,10 @@ msgstr "테마"
 msgid "Canvas"
 msgstr "캔버스"
 
+#. Refers to the animation timeline.
+msgid "Timeline"
+msgstr ""
+
 msgid "Selection"
 msgstr "선택"
 
@@ -544,6 +819,10 @@ msgstr "백업"
 msgid "Performance"
 msgstr "성능"
 
+#. Found in the preferences. Refers to device drivers, such as video drivers and tablet drivers.
+msgid "Drivers"
+msgstr ""
+
 msgid "Extensions"
 msgstr "확장"
 
@@ -553,17 +832,31 @@ msgstr "마우스 커서"
 msgid "Indicators"
 msgstr "표기 아이콘"
 
+#. Found in the preferences. Used for options that require restart when they are changed.
+msgid "Pixelorama must be restarted for changes to take effect."
+msgstr "변경 사항을 적용하려면 프로그램을 다시 시작해야합니다."
+
 msgid "On"
 msgstr "켜짐"
 
 msgid "Restore default value"
 msgstr "기본 값 복원"
 
+#. Found in the preferences, under Canvas.
 msgid "Smooth Zoom"
 msgstr "부드러운 확대"
 
+#. Found in the preferences, under Canvas. Hint tooltip of "Smooth Zoom".
 msgid "Adds a smoother transition when zooming in or out"
 msgstr "부드럽게 확대 또는 축소하기"
+
+#. Found in the preferences, under Canvas.
+msgid "Integer Zoom"
+msgstr ""
+
+#. Found in the preferences, under Canvas. Hint tooltip of "Integer Zoom".
+msgid "Restricts the value to be an integer multiple of 100%"
+msgstr ""
 
 msgid "Tablet pressure sensitivity:"
 msgstr "태블릿 필압:"
@@ -583,11 +876,35 @@ msgstr "안내선 색:"
 msgid "System Language"
 msgstr "시스템 언어"
 
-msgid "Display Scale"
-msgstr "디스플레이 크기"
+msgid "Display scale:"
+msgstr ""
+
+#. Refers to the font of a text.
+msgid "Font:"
+msgstr ""
+
+#. Found in the preferences, under the interface section. Allows users to set the size of the font, ie the text.
+msgid "Font size:"
+msgstr ""
 
 msgid "Dim interface on dialog popup"
 msgstr "대화 상자 팝업에 인터페이스를 희미하"
+
+#. Found in the preferences, under the interface section. When this setting is enabled, the native file dialogs of the operating system are being used, instead of Pixelorama's custom ones.
+msgid "Use native file dialogs"
+msgstr ""
+
+#. Found in the preferences, tooltip of the "Use native file dialogs" option.
+msgid "When this setting is enabled, the native file dialogs of the operating system are being used, instead of Pixelorama's custom ones."
+msgstr ""
+
+#. Found in the preferences, under the interface section. When this setting is enabled, Pixelorama's subwindows will be embedded in the main window, otherwise each dialog will be its own separate window.
+msgid "Single window mode"
+msgstr ""
+
+#. Found in the preferences, tooltip of the "Single window mode" option.
+msgid "When this setting is enabled, Pixelorama's subwindows will be embedded in the main window, otherwise each dialog will be its own separate window."
+msgstr ""
 
 msgid "Dark"
 msgstr "다크"
@@ -607,11 +924,15 @@ msgstr "라이트"
 msgid "Purple"
 msgstr "보라색"
 
+#. A theme. Rose refers to the color rose.
+msgid "Rose"
+msgstr ""
+
 msgid "Theme"
 msgstr "테마"
 
 msgid "Buttons"
-msgstr ""
+msgstr "버튼"
 
 msgid "Icon color from:"
 msgstr "아이콘 색상 출처:"
@@ -620,12 +941,21 @@ msgid "Icon color:"
 msgstr "아이콘 색상:"
 
 msgid "Background"
-msgstr ""
+msgstr "배경"
 
 msgid "Background color from:"
 msgstr ""
 
 msgid "Background color:"
+msgstr "배경 색상:"
+
+#. Found in the preferences, under the Tools category.
+msgid "Share options between the left and the right tools"
+msgstr ""
+
+#. Found in the preferences, under the Tools category. Tooltip of the "Share options between the left and the right tools" preference.
+msgid "If this is enabled, options will be synced between the left and the right tool.\n"
+"For example, both tools will share the same brush size, and changing it on one tool will instantly change on the other."
 msgstr ""
 
 msgid "Left tool color:"
@@ -676,12 +1006,15 @@ msgstr "블루 채널 수정"
 msgid "Modify Alpha Channel"
 msgstr "알파 채널 수정"
 
+#. An image effect. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
 msgid "Desaturation"
 msgstr "채도 낮추기"
 
+#. An image effect. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
 msgid "Outline"
 msgstr "외곽선"
 
+#. An image effect. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
 msgid "Drop Shadow"
 msgstr "그림자"
 
@@ -694,8 +1027,25 @@ msgstr "Y 오프셋:"
 msgid "Shadow color:"
 msgstr "그림자 색상:"
 
-msgid "Adjust Hue/Saturation/Value"
-msgstr "색상/채도/명도 수정"
+#. An image effect. https://en.wikipedia.org/wiki/Gaussian_blur
+msgid "Gaussian Blur"
+msgstr ""
+
+#. The type of the Gaussian blur, an image effect.
+msgid "Blur type:"
+msgstr ""
+
+#. The applied amount of Gaussian blur, an image effect.
+msgid "Blur amount:"
+msgstr ""
+
+#. The applied radius of Gaussian blur, an image effect.
+msgid "Blur radius:"
+msgstr ""
+
+#. The applied direction of Gaussian blur, an image effect.
+msgid "Blur direction:"
+msgstr ""
 
 msgid "Gradient"
 msgstr "그레디언트"
@@ -716,23 +1066,30 @@ msgid "If this is enabled, the last point gets added at the end of the gradient.
 "Disable this if you wish to convert the gradient to have constant interpolation, so that the last color will be taken into account."
 msgstr ""
 
+msgid "Shape:"
+msgstr "도형:"
+
 msgid "Linear"
 msgstr "선형"
 
 msgid "Radial"
 msgstr "반지름"
 
-msgid "Linear Step"
-msgstr "선형 단계"
+#. Found in the Gradient dialog, under the image menu. Specifies if the gradient will repeat or not.
+msgid "Repeat:"
+msgstr ""
 
-msgid "Radial Step"
-msgstr "반지름 단계"
+#. Found in the Gradient dialog, under the image menu. Specifies if the gradient will repeat or not.
+msgid "Repeat"
+msgstr ""
 
-msgid "Linear Dithering"
-msgstr "선형 디더링"
+#. Found in the Gradient dialog, under the image menu. It is one of the repeat options.
+msgid "Mirror"
+msgstr ""
 
-msgid "Radial Dithering"
-msgstr "반지름 디더링"
+#. Found in the Gradient dialog, under the image menu. It is one of the repeat options. If Truncate is selected, the gradient gets cut at the edges.
+msgid "Truncate"
+msgstr ""
 
 msgid "Transition size:"
 msgstr "전환 크기:"
@@ -740,14 +1097,8 @@ msgstr "전환 크기:"
 msgid "Center:"
 msgstr "중심:"
 
-msgid "Radius:"
-msgstr "반지름:"
-
 msgid "Dithering pattern:"
 msgstr "디더링 패턴"
-
-msgid "Adjust HSV"
-msgstr "HSV 수정"
 
 msgid "Type:"
 msgstr "타입:"
@@ -755,14 +1106,57 @@ msgstr "타입:"
 msgid "Angle:"
 msgstr "각도:"
 
+#. An image effect. Adjusts the hue, saturation and value of the colors of an image. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
+msgid "Adjust Hue/Saturation/Value"
+msgstr "색상/채도/명도 수정"
+
+#. HSV stands for Hue, Saturation & Value.
+msgid "Adjust HSV"
+msgstr "HSV 수정"
+
+#. Refers to the hue of the colors of an image.
 msgid "Hue:"
 msgstr "색조:"
 
+#. Refers to the saturation of the colors of an image.
 msgid "Saturation:"
 msgstr "채도:"
 
+#. Refers to the value (as in HSV) of the colors of an image.
 msgid "Value:"
 msgstr "명도:"
+
+#. An image effect. Adjusts the brightness and contrast of the colors of an image.
+msgid "Adjust Brightness/Contrast"
+msgstr ""
+
+#. Refers to the brightness of the colors of an image.
+msgid "Brightness:"
+msgstr ""
+
+#. Refers to the contrast of the colors of an image.
+msgid "Contrast:"
+msgstr ""
+
+#. Refers to the red value of the colors of an image.
+msgid "Red value:"
+msgstr ""
+
+#. Refers to the green value of the colors of an image.
+msgid "Green value:"
+msgstr ""
+
+#. Refers to the blue value of the colors of an image.
+msgid "Blue value:"
+msgstr ""
+
+#. Refers to a color that tints an image.
+msgid "Tint color:"
+msgstr ""
+
+#. Refers to the factor (how much) a color tints an image.
+msgid "Tint effect factor:"
+msgstr ""
 
 msgid "Apply"
 msgstr "적용"
@@ -782,17 +1176,25 @@ msgstr "색상:"
 msgid "Steps:"
 msgstr "단계:"
 
-msgid "Top to Bottom"
-msgstr "위에서 아래로"
+#. An image effect. It maps the color of the input to the nearest color in the selected palette. Useful for limiting color in pixel art and for artistic effects. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
+msgid "Palettize"
+msgstr ""
 
-msgid "Bottom to Top"
-msgstr "아래서 위로"
+#. An image effect. It makes the input image pixelated. See Pixelorama's documentation page for more information: https://www.oramainteractive.com/Pixelorama-Docs/user_manual/image_effects
+msgid "Pixelize"
+msgstr ""
 
-msgid "Left to Right"
-msgstr "왼쪽에서 오른쪽으로"
+#. An image effect. For more details about what it does, you can refer to GIMP's documentation https://docs.gimp.org/2.8/en/gimp-tool-posterize.html
+msgid "Posterize"
+msgstr ""
 
-msgid "Right to Left"
-msgstr "오른쪽에서 왼쪽으로"
+#. An option for the posterize image effect. For more details about what it does, you can refer to GIMP's documentation https://docs.gimp.org/2.8/en/gimp-tool-posterize.html
+msgid "Posterize levels:"
+msgstr ""
+
+#. An option for the posterize image effect.
+msgid "Dither intensity:"
+msgstr ""
 
 msgid "View Splash Screen"
 msgstr "시작 로고 화면 보기"
@@ -803,14 +1205,19 @@ msgstr "온라인 문서"
 msgid "Issue Tracker"
 msgstr "이슈 트래커"
 
-msgid "Open Logs Folder"
-msgstr "로그 폴더 열기"
+#. Found under the Help menu. When selected, it opens the folder where the application's data are being saved.
+msgid "Open Editor Data Folder"
+msgstr ""
 
 msgid "Changelog"
 msgstr "변경 사항"
 
 msgid "About Pixelorama"
 msgstr "Pixelorama에 대하여"
+
+#. Found under the Help menu. When clicked, it opens the URL of Orama Interactive's patreon page.
+msgid "Support Pixelorama's Development"
+msgstr ""
 
 msgid "Pixelorama - Pixelate your dreams!"
 msgstr "Pixelorama - 당신의 꿈을 픽셀 화하세요!"
@@ -824,8 +1231,9 @@ msgstr "©2019-2020 by Orama Interactive and contributors"
 msgid "Website"
 msgstr "웹사이트"
 
-msgid "GitHub Repo"
-msgstr "GitHub Repo"
+#. Found in the About dialog. A button that, when you click it, it opens the URL of Pixelorama's source code.
+msgid "Source Code"
+msgstr ""
 
 msgid "Donate"
 msgstr "후원하기"
@@ -932,17 +1340,20 @@ msgstr "세르비아어 (키릴 문자)"
 msgid "Dutch"
 msgstr "네덜란드어"
 
-msgid "Development Team"
-msgstr "개발팀"
+msgid "Belarusian"
+msgstr ""
 
-msgid "Lead Programmer"
-msgstr "리드 프로그래머"
+#. Found in the About dialog.
+msgid "Lead Developer"
+msgstr ""
 
+#. Found in the About dialog.
 msgid "UI Designer"
 msgstr "UI 디자이너"
 
-msgid "GitHub Contributors"
-msgstr "GitHub 기여자"
+#. Found in the About dialog. Refers to the people who have contributed code to the project.
+msgid "Authors"
+msgstr ""
 
 msgid "Art by: %s"
 msgstr "작가: %s"
@@ -968,8 +1379,8 @@ msgstr "저장되지 않은 수정사항이 있습니다. 계속하면 수정사
 msgid "Save before exiting?"
 msgstr "종료하기 전에 저장할까요?"
 
-msgid "You have unsaved progress. How do you wish to proceed?"
-msgstr "저장되지 않은 수정사항이 있습니다. 계속하시겠습니까?"
+msgid "Project %s has unsaved progress. How do you wish to proceed?"
+msgstr ""
 
 msgid "Save & Exit"
 msgstr "저장 및 종료"
@@ -1020,6 +1431,11 @@ msgstr "밧줄\n\n"
 "%s 은(는) 왼쪽 마우스 버튼\n"
 "%s 은(는) 오른쪽 마우스 버튼"
 
+msgid "Select by Drawing\n\n"
+"%s for left mouse button\n"
+"%s for right mouse button"
+msgstr ""
+
 msgid "Move\n\n"
 "%s for left mouse button\n"
 "%s for right mouse button"
@@ -1048,6 +1464,10 @@ msgid "Color Picker\n\n"
 msgstr "색상 선택기\n\n"
 "%s 은(는) 왼쪽 마우스 버튼\n"
 "%s 은(는) 오른쪽 마우스 버튼"
+
+msgid "Crop\n\n"
+"Resize the canvas"
+msgstr ""
 
 msgid "Pencil\n\n"
 "%s for left mouse button\n"
@@ -1094,6 +1514,15 @@ msgstr "선 툴\n\n"
 "%s 를 눌러 도형의 클릭 원점 중앙에 놓음\n"
 "%s 를 눌러 원점을 바꿈"
 
+msgid "Curve Tool\n\n"
+"%s for left mouse button\n"
+"%s for right mouse button\n\n"
+"Draws bezier curves\n"
+"Press %s/%s to add new points\n"
+"Press and drag to control the curvature\n"
+"Press %s to remove the last added point"
+msgstr ""
+
 msgid "Rectangle Tool\n\n"
 "%s for left mouse button\n"
 "%s for right mouse button\n\n"
@@ -1132,13 +1561,48 @@ msgstr "왼쪽 툴의 색상 선택"
 msgid "Choose a color for the right tool"
 msgstr "오른쪽 툴의 색상 선택"
 
-msgid "Switch left and right colors\n"
-"(%s)"
-msgstr "좌/우 색상 변경\n"
-"(%s)"
+#. Tooltip of the switch colors button found in the color picker panel.
+msgid "Switch left and right colors."
+msgstr ""
+
+#. Tooltip of the average color button, found in the color picker panel. Shows the average color between the two selected.
+msgid "Average Color:"
+msgstr ""
 
 msgid "Reset the colors to their default state (black for left, white for right)"
 msgstr "색상을 기본 상태로 복원 (블랙을 왼쪽, 화이트를 오른쪽)"
+
+#. Tooltip of the screen color picker button found in the color picker panel.
+msgid "Pick a color from the screen."
+msgstr ""
+
+#. Tooltip of the color text field found in the color picker panel that lets users change the color by hex code or english name ("red" cannot be translated).
+msgid "Enter a hex code (\"#ff0000\") or named color (\"red\")."
+msgstr ""
+
+#. Tooltip of the button found in the color picker panel that lets users change the shape of the color picker.
+msgid "Select a picker shape."
+msgstr ""
+
+#. Refers to color-related options such as sliders that set color channel values like R, G, B and A.
+msgid "Color options"
+msgstr ""
+
+#. Tooltip of the button with three dots found under color options in the color picker panel that lets users change the mode of the color picker/sliders.
+msgid "Select a picker mode."
+msgstr ""
+
+#. Checkbox found in the menu of the button with three dots found under color options in the color picker panel.
+msgid "Colorized Sliders"
+msgstr ""
+
+#. Shows saved colors in certain color picker menus.
+msgid "Swatches"
+msgstr ""
+
+#. Found under color options in the color picker panel.
+msgid "Recent Colors"
+msgstr ""
 
 msgid "Left tool"
 msgstr "왼쪽 툴"
@@ -1185,6 +1649,18 @@ msgstr "안내선 색:"
 msgid "A color of ruler guides displayed on the canvas"
 msgstr "캔버스에 표시되는 줄자 안내선의 색상"
 
+#. Found in the Preferences, in the Canvas tab. Refers to grid and guide snapping.
+msgid "Snapping"
+msgstr "스냅"
+
+#. Found in the Preferences, in the Canvas tab. Refers to grid and guide snapping.
+msgid "Snapping distance:"
+msgstr "스냅 거리"
+
+#. Found in the Preferences, in the Canvas tab. Refers to grid and guide snapping. Hint tooltip of the snapping distance slider.
+msgid "This is the distance in screen pixels where guide and grid snapping gets activated."
+msgstr ""
+
 msgid "Grid"
 msgstr "격자"
 
@@ -1203,41 +1679,21 @@ msgstr "아이소메트릭"
 msgid "All"
 msgstr "전체"
 
-msgid "Rectangular grid width:"
-msgstr "직사각형 격자 폭"
+#. Found in the Preferences, in the Canvas tab.
+msgid "Rectangular grid size:"
+msgstr ""
 
-msgid "Sets how far apart are vertical lines of the rectangular grid"
-msgstr "직사각형 격자의 수직선 간격 설정"
+#. Found in the Preferences, in the Canvas tab.
+msgid "Isometric grid size:"
+msgstr "아이소메트릭 격자 크기"
 
-msgid "Rectangular grid height:"
-msgstr "직사각형 격자 높이"
+#. Found in the Preferences, in the Canvas tab.
+msgid "Grid offset:"
+msgstr "격자 오프셋:"
 
-msgid "Sets how far apart are horizontal lines of the rectangular grid"
-msgstr "직사각형 격자의 수평선 간격 설정"
-
-msgid "Isometric cell bounds width:"
-msgstr "아이소메트릭 셀 경계 너비:"
-
-msgid "Sets the width of the isometric cell's axis aligned bounding box"
-msgstr "아이소메트릭 셀의 너비를 설정합니다"
-
-msgid "Isometric cell bounds height:"
-msgstr "아이소메트릭 셀 경계 높이:"
-
-msgid "Sets the height of the isometric cell's axis aligned bounding box"
-msgstr "아이소메트릭 셀의 높이를 설정합니다"
-
-msgid "Grid offset x:"
-msgstr "격자 오프셋 x:"
-
-msgid "Sets grid's x offset from the canvas origin (top left corner of the image)"
-msgstr "캔버스 원점에서 격자의 x 오프셋을 설정합니다 (이미지의 왼쪽 상단 모서리)"
-
-msgid "Grid offset y:"
-msgstr "격자 오프셋 y:"
-
-msgid "Sets grid's y offset from the canvas origin (top left corner of the image)"
-msgstr "캔버스 원점에서 격자의 y 오프셋을 설정합니다 (이미지의 왼쪽 상단 모서리)"
+#. Found in the Preferences, in the Canvas tab. Hint tooltip of the grid offset value sliders.
+msgid "Sets grid's offset from the canvas origin (top left corner of the image)"
+msgstr ""
 
 msgid "Draw over Tile Mode:"
 msgstr "타일 모드 위에 그리기"
@@ -1299,6 +1755,18 @@ msgstr "캔버스 확대 레벨을 따라감"
 msgid "The transparent checker follow the zoom level of canvas"
 msgstr "투명 배경 체크 무늬가 캔버스 확대 레벨을 따라감"
 
+#. Found in the Preferences, under Timeline. If this is enabled, clicking on the layer buttons (such as lock, invisible etc) will automatically select that layer.
+msgid "Select layer when clicking on one of its buttons:"
+msgstr ""
+
+#. Found in the Preferences, under Timeline. Changes the color of the past (previous) frames in onion skinning, if color mode is enabled.
+msgid "Onion skinning past color:"
+msgstr ""
+
+#. Found in the Preferences, under Timeline. Changes the color of the past (previous) frames in onion skinning, if color mode is enabled.
+msgid "Onion skinning future color:"
+msgstr ""
+
 msgid "Animated selection borders"
 msgstr "움직이는 선택 테두리"
 
@@ -1314,15 +1782,54 @@ msgstr "커스텀 프리셋만 수정 가능함"
 msgid "Set application FPS limit:"
 msgstr "창 FPS 제한 설정"
 
-msgid "Pause application when it loses focus"
-msgstr "관심 없는 창 정지"
-
 msgid "Sets the limit of the application's frames per second. The lower the number, the lower the CPU usage, but the application gets slower, choppier and unresponsive. 0 means that there is no limit."
 msgstr "프로그램의 FPS를 제한합니다. 숫자가 낮을수록, CPU 사용량은 낮아지지만 프로그램의 속도가 느려지고, 거칠어지고 응답하지 않습니다. 0은 제한이 없음을 의미합니다"
 
+#. Found in the Preferences, under the Performance section. Changes the value of the maximum undo steps projects can use.
+msgid "Max undo steps:"
+msgstr ""
+
+#. An option found in the preferences, under the Performance section.
+msgid "Pause application when it loses focus"
+msgstr "관심 없는 창 정지"
+
+#. Found in the preferences, hint of the "Pause application when it loses focus" option.
 msgid "If this is toggled on, when the application's window loses focus, it gets paused. This helps lower CPU usage when idle. The application gets unpaused when the mouse enters the application's window."
 msgstr "이 옵션을 켜면 프로그램 창의 관심이 없을때 정지하게 됩니다. 이 옵션은 프로그램을 안 쓰고 있을때 CPU 사용량을 줄일 수 있습니다. 마우스가 프로그램의 창에 들어갈때 정지를 해제 합니다"
 
+#. An option found in the preferences, under the Performance section. Refers to the screen being updated (redrawn) continuously.
+msgid "Update continuously"
+msgstr ""
+
+#. Found in the preferences, hint of the "Update continuously" option.
+msgid "If this is toggled on, the application will redraw the screen continuously, even while it's not used. Turning this off helps lower CPU and GPU usage when idle."
+msgstr ""
+
+#. An option found in the preferences, under the Performance section.
+msgid "Enable window transparency"
+msgstr ""
+
+#. Found in the preferences, hint of the "Enable window transparency" option.
+msgid "If enabled, the application window can become transparent. This affects performance, so keep it off if you don't need it."
+msgstr ""
+
+#. Found in the Preferences, under Drivers. Specifies the renderer/video driver being used.
+msgid "Renderer:"
+msgstr ""
+
+#. Found in the Preferences, under Drivers. Hint tooltip of the renderer option.
+msgid "Specifies the renderer/video driver being used. GLES2 is better for older and low-end devices, but GLES3 may offer more features."
+msgstr ""
+
+#. Found in the Preferences, under Drivers. Specifies the tablet driver being used on Windows.
+msgid "Tablet driver:"
+msgstr ""
+
+#. Found in the Preferences, under Drivers. Hint tooltip of the tablet driver option.
+msgid "Specifies the tablet driver being used on Windows. If you have Windows Ink enabled, select winink."
+msgstr ""
+
+#. Found in the Preferences, under Extensions.
 msgid "Add Extension"
 msgstr "확장 추가"
 
@@ -1337,6 +1844,58 @@ msgstr "삭제"
 
 msgid "Open Folder"
 msgstr "폴더 열기"
+
+#. Found in the Preferences, under Extensions. It is a button that, when clicked, opens up the extension explorer which allows users to download extensions from the Internet.
+msgid "Explore Online"
+msgstr ""
+
+#. Found in the Preferences, under Extensions. This is the text of a confirmation dialog that appears when the user attempts to enable an extension.
+msgid "Are you sure you want to enable this extension? Make sure to only enable extensions from sources that you trust."
+msgstr ""
+
+#. Found in the Preferences, under Extensions. This is the text of a confirmation dialog that appears when the user attempts to delete an extension.
+msgid "Are you sure you want to delete this extension?"
+msgstr ""
+
+#. Hint tooltip of a button in the Global Tool Settings. "Dynamics" let users affect certain brush parameters, such as their size and alpha, based on the pressure of the tablet pen, the velocity of the mouse or the pen, and more in the future.
+msgid "Dynamics"
+msgstr ""
+
+#. Found in the Dynamics options menu. A stabilizer is a feature that, when enabled, helps artists create smooth lines as they draw.
+msgid "Stabilizer"
+msgstr ""
+
+#. Found in the Dynamics options menu. Pressure refers to tablet pen pressure.
+msgid "Pressure"
+msgstr ""
+
+#. Found in the Dynamics options menu. Velocity refers to mouse or tablet pen velocity, meaning how fast it moves.
+msgid "Velocity"
+msgstr ""
+
+#. Refers to the alpha channel of the colors, in the RGBA color model. The alpha channel is responsible for the transparency of the color.
+msgid "Alpha"
+msgstr ""
+
+#. Refers to the size of a value, for example the size of a brush.
+msgid "Size"
+msgstr ""
+
+#. Found in the Dynamics options menu. Sets the limits of the brush property values, such as the minimum and maximum values of alpha and size.
+msgid "Value limits"
+msgstr ""
+
+#. Found in the Dynamics options menu. Sets the thresholds of the dynamic properties, such as the minimum and maximum values of pressure and velocity.
+msgid "Thresholds"
+msgstr ""
+
+#. Noun, the start of something.
+msgid "Start"
+msgstr ""
+
+#. Noun, the end of something.
+msgid "End"
+msgstr ""
 
 msgid "Brush:"
 msgstr "브러시:"
@@ -1359,8 +1918,8 @@ msgstr "커스텀 브러시"
 msgid "Brush size:"
 msgstr "브러시 크기:"
 
-msgid "Overwrite Color"
-msgstr "색 덮어쓰기"
+msgid "Overwrite color"
+msgstr ""
 
 msgid "Overwrites color instead of blending it. This option is only relevant with colors that are not fully opaque"
 msgstr "색을 섞는 대신 덮어씁니다. 이 옵션은 완전 불투명한 색을 쓰지 않을 때만 의미가 있습니다."
@@ -1368,19 +1927,39 @@ msgstr "색을 섞는 대신 덮어씁니다. 이 옵션은 완전 불투명한 
 msgid "Pixel Perfect"
 msgstr "픽셀 퍼펙트"
 
-msgid "Fill inside"
-msgstr "안에 채우기"
-
 msgid "Pixel Perfect\n"
 "Makes lines smooth by removing the extra pixels on the edges"
 msgstr "픽셀 퍼펙트\n"
 "모서리의 불필요한 픽셀을 제거해서 선을 부드럽게 만듭니다"
+
+#. A button found in the global tool options. When enabled, the alpha value of the pixels being drawn is locked, meaning that the user can only draw on non-transparent pixels.
+msgid "Lock alpha"
+msgstr ""
+
+msgid "Fill inside"
+msgstr "안에 채우기"
+
+#. Found in the tool options of the Pencil tool, and refers to the spacing between brush strokes.
+msgid "Spacing"
+msgstr ""
+
+#. Found in the tool options of the Pencil tool if "Spacing" is enabled, and refers to the horizontal gap between brush strokes.
+msgid "Gap X:"
+msgstr ""
+
+#. Found in the tool options of the Pencil tool if "Spacing" is enabled, and refers to the vertical gap between brush strokes.
+msgid "Gap Y:"
+msgstr ""
 
 msgid "Fill Shape"
 msgstr "도형 채우기"
 
 msgid "Fills the drawn shape with color, instead of drawing a hollow shape"
 msgstr "빈 도형을 그리는 대신 도형을 색상으로 채우고 그립니다."
+
+#. Found in the tool options of the Pencil, Eraser and Shading tools. It is a percentage of how dense the brush is. 100% density means that the brush gets completely drawn, anything less leaves gaps inside the brush, acting like a spray tool.
+msgid "Density:"
+msgstr ""
 
 msgid "Brush color from"
 msgstr "브러시 색상을 ~에서"
@@ -1407,9 +1986,11 @@ msgstr ""
 msgid "Fill with:"
 msgstr "이것으로 채우기:"
 
-msgid "Selected Color"
-msgstr "선택된 색상"
+#. Found in the bucket tool options, one of the fill with options.
+msgid "Selected color"
+msgstr ""
 
+#. Found in the bucket tool options, one of the fill with options.
 msgid "Pattern"
 msgstr "패턴"
 
@@ -1452,6 +2033,9 @@ msgstr "확대"
 msgid "Zoom out"
 msgstr "축소"
 
+msgid "Options"
+msgstr ""
+
 msgid "Options:"
 msgstr "옵션:"
 
@@ -1460,6 +2044,22 @@ msgstr "프레임에 맞추기"
 
 msgid "100% Zoom"
 msgstr "100% 줌"
+
+#. One of the modes of a selection tool. Found in the tool options, when a selection tool is active.
+msgid "Replace selection"
+msgstr ""
+
+#. One of the modes of a selection tool. Found in the tool options, when a selection tool is active.
+msgid "Add to selection"
+msgstr ""
+
+#. One of the modes of a selection tool. Found in the tool options, when a selection tool is active.
+msgid "Subtract from selection"
+msgstr ""
+
+#. One of the modes of a selection tool. Found in the tool options, when a selection tool is active.
+msgid "Intersection of selections"
+msgstr ""
 
 msgid "Mirroring"
 msgstr "미러링"
@@ -1470,47 +2070,49 @@ msgstr "수평"
 msgid "Enable horizontal mirrored drawing"
 msgstr "수평 대칭 그리기 활성화"
 
+msgid "Vertical"
+msgstr "수직"
+
 msgid "Enable vertical mirrored drawing"
 msgstr "수직 대칭 그리기 활성화"
 
-msgid "Vertical"
-msgstr "수직"
+#. Found in the global tool options, in the menu that appears next to each mirror button. It affects the position of a symmetry guide.
+msgid "Move to canvas center"
+msgstr ""
+
+#. Found in the global tool options, in the menu that appears next to each mirror button. It affects the position of a symmetry guide.
+msgid "Move to view center"
+msgstr ""
 
 msgid "Current frame:"
 msgstr "현재 프레임:"
 
-msgid "Jump to the first frame\n"
-"(%s)"
-msgstr "첫 프레임으로 이동\n"
-"(%s)"
+msgid "Animation mode:"
+msgstr "애니메이션 모드:"
 
-msgid "Go to the previous frame\n"
-"(%s)"
-msgstr "이전 프레임으로 이동\n"
-"(%s)"
+msgid "Current frame as spritesheet"
+msgstr ""
 
-msgid "Play the animation backwards (from end to beginning)\n"
-"(%s)"
-msgstr "애니메이션 반대로 재생 (끝에서 처음으로)\n"
-"(%s)"
+msgid "Jump to the first frame"
+msgstr ""
 
-msgid "Play the animation forward (from beginning to end)\n"
-"(%s)"
-msgstr "애니메이션 앞으로 재생 (처음에서 끝으로)\n"
-"(%s)"
+msgid "Go to the previous frame"
+msgstr ""
 
-msgid "Go to the next frame\n"
-"(%s)"
-msgstr "다음 프레임으로 이동\n"
-"(%s)"
+msgid "Play the animation backwards"
+msgstr ""
 
-msgid "Jump to the last frame\n"
-"(%s)"
-msgstr "마지막 프레임으로 이동\n"
-"(%s)"
+msgid "Play the animation forward"
+msgstr ""
 
-msgid "Onion Skinning settings"
-msgstr "어니언 스키닝 설정"
+msgid "Go to the next frame"
+msgstr ""
+
+msgid "Jump to the last frame"
+msgstr ""
+
+msgid "Timeline settings"
+msgstr ""
 
 msgid "Enable/disable Onion Skinning"
 msgstr "어니언 스키닝 활성화/비활성화"
@@ -1570,8 +2172,13 @@ msgid "If it's selected, the animation plays only on the frames that have the sa
 msgstr "선택 되었다면, 같은 태그의 프레임만 애니메이션이 재생 됩니다.\n"
 "그렇지 않다면, 태그를 무시하고 모든 프레임의 애니메이션이 재생 됩니다."
 
-msgid "Blue-Red Mode"
-msgstr "청-적 모드"
+#. Found in the timeline, inside the timeline settings. It's a slider that sets the size of the cel buttons in the timeline.
+msgid "Cel size:"
+msgstr ""
+
+#. Found in the timeline, inside the timeline settings. If this is enabled, the past and future frames will have appear tinted.
+msgid "Color mode"
+msgstr "색상 모드"
 
 msgid "Show past frames:"
 msgstr "이전 프래임 보기"
@@ -1606,26 +2213,70 @@ msgstr "오른쪽으로 이동"
 msgid "Add Frame Tag"
 msgstr ""
 
-msgid "Link Cel"
-msgstr "셀 연결"
+msgid "Link Cels to"
+msgstr ""
 
-msgid "Unlink Cel"
-msgstr "셀 연결 해제"
+msgid "Unlink Cels"
+msgstr ""
 
-msgid "Frame Properties"
-msgstr "프레임 속성"
+msgid "Properties"
+msgstr ""
+
+msgid "Project Properties"
+msgstr ""
 
 msgid "Frame properties"
 msgstr "프레임 속성"
 
+msgid "Layer properties"
+msgstr ""
+
+msgid "Cel properties"
+msgstr ""
+
+msgid "Tag properties"
+msgstr ""
+
+#. Found on the popup menu that appears when a user right-clicks on a frame button. When clicked, a new frame tag is added.
+msgid "New Tag"
+msgstr ""
+
+#. Found on the popup menu that appears when a user right-clicks on a frame button. When clicked, it allows users to paste/import tags from other opened projects.
+msgid "Import Tag"
+msgstr ""
+
+#. Found on the popup menu that appears when a user right-clicks on a frame button. When clicked, the order of the selected frames is being reversed.
+msgid "Reverse Frames"
+msgstr ""
+
 msgid "Layer"
 msgstr "레이어"
+
+msgid "Group"
+msgstr ""
 
 msgid "Layers"
 msgstr "레이어"
 
+#. Found in the layer menu which appears when right clicking on a layer button in the timeline. When enabled, the layer becomes a clipping mask.
+msgid "Clipping mask"
+msgstr ""
+
+#. Hint tooltip of the create new layer button, found on the left side of the timeline.
 msgid "Create a new layer"
 msgstr "새 레이어 생성"
+
+#. One of the options of the create new layer button.
+msgid "Add Pixel Layer"
+msgstr ""
+
+#. One of the options of the create new layer button.
+msgid "Add Group Layer"
+msgstr ""
+
+#. One of the options of the create new layer button.
+msgid "Add 3D Layer"
+msgstr ""
 
 msgid "Remove current layer"
 msgstr "현재 레이어 제거"
@@ -1642,6 +2293,94 @@ msgstr "현재 레이어 복제"
 msgid "Merge current layer with the one below"
 msgstr "현재 레이어와 그 아래 레이어를 병합"
 
+#. Found in the layer's section of the timeline. Refers to layer blend modes, for more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Blend mode:"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option, only available for group layers. If enabled, group blending is disabled and the group simply acts as a way to organize layers instead of affecting blending.
+msgid "Pass through"
+msgstr ""
+
+#. Adjective, refers to something usual/regular, such as the normal blend mode.
+msgid "Normal"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Multiply"
+msgstr ""
+
+# .Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Color burn"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Linear burn"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Screen"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Color dodge"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as category of blend modes. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Contrast"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Overlay"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Soft light"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Hard light"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a category of blend modes. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Inversion"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Difference"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Exclusion"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Subtract"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Divide"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a category of blend modes. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Component"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Hue"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Saturation"
+msgstr ""
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Color"
+msgstr "색상"
+
+#. Found in the layer's section of the timeline, as a blend mode option. For more info refer to: https://en.wikipedia.org/wiki/Blend_modes
+msgid "Luminosity"
+msgstr ""
+
 msgid "Opacity:"
 msgstr "투명도:"
 
@@ -1657,10 +2396,12 @@ msgstr "레이어 잠금/잠금 해제"
 msgid "Frame: %s, Layer: %s"
 msgstr "프레임: %s, 레이어: %s"
 
-msgid "Enable/disable cel linking\n\n"
-"Linked cels are being shared across multiple frames"
-msgstr "셀 연결 활성화/비활성화\n\n"
-"연결된 셀들은 여러 프레임에 공유 됩니다"
+msgid "Enable/disable automatic linking of new cels when creating new frames\n\n"
+"Linked cels share content across multiple frames"
+msgstr ""
+
+msgid "Expand/collapse group"
+msgstr ""
 
 msgid "Palette"
 msgstr "팔레트"
@@ -1776,8 +2517,12 @@ msgstr "코드 에러. 파일을 여는것을 실패힜읍니다"
 msgid "File failed to save. Error code %s"
 msgstr "코드 에러. 파일을 저장을 실패했읍니다"
 
-msgid "File exported"
-msgstr "파일이 내보내졌습니다"
+#. Appears when the user attempts to export a project as a video, but the process fails. FFMPEG is the external software used to export videos.
+msgid "Video failed to export. Ensure that FFMPEG is installed correctly."
+msgstr ""
+
+msgid "File(s) exported"
+msgstr "내보낸 파일(들)"
 
 msgid "New Empty Palette"
 msgstr "새 빈 팔레트"
@@ -1860,6 +2605,26 @@ msgstr "기본 채우기 색:"
 msgid "A default background color of a new image"
 msgstr "새 이미지의 기본 배경 색"
 
+#. Found in the preferences, under the Reset category.
+msgid "Reset all options available in the Preferences"
+msgstr ""
+
+#. Found in the preferences, under the Reset category.
+msgid "Reset timeline options"
+msgstr ""
+
+#. Found in the preferences, under the Reset category.
+msgid "Reset all tool options"
+msgstr ""
+
+#. Found in the preferences, under the Reset category.
+msgid "Remove all extensions"
+msgstr ""
+
+#. Found in the preferences, under the Reset category.
+msgid "Clear the recently opened file list"
+msgstr ""
+
 msgid "Lock aspect ratio"
 msgstr "비율 고정"
 
@@ -1929,6 +2694,9 @@ msgstr "셰이딩 툴"
 msgid "Line Tool"
 msgstr "선 툴"
 
+msgid "Curve Tool"
+msgstr ""
+
 msgid "Rectangle Tool"
 msgstr "사각형 툴"
 
@@ -1983,6 +2751,10 @@ msgstr "프로그램을 시작할 때 마지막으로 열었던 프로젝트 열
 msgid "Quit confirmation"
 msgstr "종료 확인"
 
+#. Found in the preferences, under the startup section. Path is a noun and it refers to the location in the device where FFMPEG is located at. FFMPEG is a software name and it should not be translated. See https://en.wikipedia.org/wiki/Path_(computing)
+msgid "FFMPEG path"
+msgstr ""
+
 msgid "Enable autosave"
 msgstr "자동 저장 켜기"
 
@@ -1992,11 +2764,49 @@ msgstr "자동 저장 주기:"
 msgid "minute(s)"
 msgstr "분"
 
-msgid "Create new directory for each frame tag"
-msgstr "각 프레임 태그 마다 새로운 폴더 만들기."
+#. A setting found in the export dialog. When enabled, a JSON file containing the project's data is also being exported. JSON refers to this https://en.wikipedia.org/wiki/JSON
+msgid "Export JSON data"
+msgstr ""
 
-msgid "Creates multiple files but every file is stored in different directory that corresponds to its frame tag"
-msgstr "여러 파일을 만들지만 프레임 태그로 분류되어 다른 폴더에 저장됩니다"
+#. A setting found in the export dialog. When enabled, each layer is being exported as a different file, or as different frames if the target format is gif/apng/video.
+msgid "Split layers"
+msgstr ""
+
+#. Found in the export dialog.
+msgid "Include frame tags in the file name"
+msgstr ""
+
+#. Found in the export dialog.
+msgid "Create new folder for each frame tag"
+msgstr ""
+
+#. Found in the export dialog, as a hint tooltip of the "Create new folder for each frame tag" button
+msgid "Creates multiple files but every file is stored in different folder that corresponds to its frame tag"
+msgstr ""
+
+#. Found in the export dialog. Refers to text characters that acts as separators between text. For example, the "_" in "name_0001".
+msgid "Separator character(s):"
+msgstr ""
+
+#. Found in the export dialog, as a hint tooltip of the separator character(s) text field.
+msgid "The character(s) that separate the file name and the frame number"
+msgstr ""
+
+#. Found in the export dialog. It is an option that removes the transparent area around non-transparent pixels of the exported images.
+msgid "Trim images"
+msgstr ""
+
+#. Found in the export dialog. Tooltip of the "trim images" option.
+msgid "Trims the exported images to their visible portion, considering each pixel with a non-zero alpha channel as visible."
+msgstr ""
+
+#. Found in the export dialog. It is an option that allows users to only export the portions of the images that are within the selected area.
+msgid "Clip image content to selection"
+msgstr ""
+
+#. Found in the export dialog. Tooltip of the "clip image content to selection" option.
+msgid "Only export content that is within the bounds of a selected area."
+msgstr ""
 
 msgid "Close"
 msgstr "닫기"
@@ -2023,9 +2833,6 @@ msgstr "팔레트를 더 이상 지울 수 없습니다!"
 msgid "Cannot remove the palette, because it doesn't exist!"
 msgstr "팔레트가 존재하지 않기 때문에, 팔레트를 지울 수 없었습니다!"
 
-msgid "An error occured while removing the palette! Error code: %s"
-msgstr "팔레트를 제거하던 도중 오류가 발생했습니다! 오류 코드: %s"
-
 msgid "and"
 msgstr "그리고"
 
@@ -2035,8 +2842,13 @@ msgstr "선택한 프레임을 왼쪽으로 움직여주세요"
 msgid "Move the selected frame to the right."
 msgstr "선택한 프레임을 오른쪽으로 움직여주세요"
 
-msgid "Frame duration"
-msgstr "프레임 기간"
+#. Refers to the duration of the frame. Found in the frame properties.
+msgid "Frame duration:"
+msgstr ""
+
+#. Refers to custom user defined data for projects, frames, cels, tags and layers, found in their respective properties.
+msgid "User data:"
+msgstr ""
 
 msgid "Duration"
 msgstr "기간"
@@ -2074,14 +2886,55 @@ msgstr "새 색상 추가"
 msgid "Remove a selected color"
 msgstr "선택한 색상 제거"
 
+#. Tooltip of the Sort button found in the palette panel.
+msgid "Sort palette"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette get reversed.
+msgid "Reverse colors"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their hue.
+msgid "Sort by hue"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their saturation.
+msgid "Sort by saturation"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their value.
+msgid "Sort by value"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their OKHSL Lightness.
+msgid "Sort by lightness"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their red channel value.
+msgid "Sort by red"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their green channel value.
+msgid "Sort by green"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their blue channel value.
+msgid "Sort by blue"
+msgstr ""
+
+#. An option of the Sort palette button found in the palette panel. When selected, the colors of the palette are being sorted based on their alpha channel value.
+msgid "Sort by alpha"
+msgstr ""
+
 msgid "Palette with the same name and path already exists!"
 msgstr "동일한 이름과 경로를가진 팔레트가 이미 존재합니다!"
 
 msgid "Palette name is required!"
 msgstr "팔레트의 이름이 필요합니다!"
 
-msgid "Reducing palette size will reset positions of colors. Colors that don't fit in new palette size will be lost!"
-msgstr "팔레트 크기를 줄이면 색상 위치가 재설정됩니다. 새로운 팔레트 크기에 맞지 않는 색상은 손실됩니다!"
+msgid "Reducing palette size will reset positions of colors.\n"
+"Colors that don't fit in new palette size will be lost!"
+msgstr ""
 
 msgid "Position:"
 msgstr "위치:"
@@ -2112,4 +2965,416 @@ msgstr "왼쪽 툴 설정"
 
 msgid "Right Tool Options"
 msgstr "오른쪽 툴 설정"
+
+msgid "Reference Images"
+msgstr ""
+
+msgid "Perspective Editor"
+msgstr ""
+
+#. A UI panel. It is used to record the software in order to show the progress of art, usually in form of time lapses.
+msgid "Recorder"
+msgstr ""
+
+msgid "Crop"
+msgstr ""
+
+msgid "Resize the canvas"
+msgstr ""
+
+msgid "Margins"
+msgstr ""
+
+msgid "Position + Size"
+msgstr ""
+
+msgid "Locked Aspect Ratio"
+msgstr ""
+
+msgid "Margins:"
+msgstr ""
+
+msgid "Aspect Ratio:"
+msgstr ""
+
+msgid "Top:"
+msgstr ""
+
+msgid "Bottom:"
+msgstr ""
+
+msgid "Left:"
+msgstr ""
+
+msgid "Right:"
+msgstr ""
+
+msgid "Locked size\n\n"
+"When enabled using the tool on the canvas will only move the cropping rectangle.\n\n"
+"When disabled using the tool on the canvas will draw the rectangle."
+msgstr ""
+
+#. A tool used in 3D layers, that edits 3D objects.
+msgid "3D Shape Edit"
+msgstr ""
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Box"
+msgstr "큐브"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Sphere"
+msgstr "구형"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Capsule"
+msgstr "캡슐"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Cylinder"
+msgstr "원통"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Prism"
+msgstr "프리즘"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Torus"
+msgstr "토루스"
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Plane"
+msgstr "평면"
+
+msgid "Text"
+msgstr ""
+
+#. Used in 3D layers. A type of light.
+msgid "Directional light"
+msgstr ""
+
+#. Used in 3D layers. A type of light.
+msgid "Spotlight"
+msgstr ""
+
+#. Used in 3D layers. A type of light.
+msgid "Point light"
+msgstr ""
+
+#. Used in 3D layers. A type of 3D object.
+msgid "Custom model"
+msgstr ""
+
+msgid "Selected object:"
+msgstr ""
+
+msgid "Add new object"
+msgstr ""
+
+msgid "Remove object"
+msgstr ""
+
+msgid "Camera"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool. Refers to camera projection mode.
+msgid "Projection:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool. One of the modes of camera projection.
+msgid "Perspective"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool. One of the modes of camera projection.
+msgid "Orthogonal"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool. One of the modes of camera projection.
+msgid "Frustum"
+msgstr ""
+
+msgid "Rotation:"
+msgstr ""
+
+msgid "Scale:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool.
+msgid "Environment"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Environment category.
+msgid "Ambient color:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Environment category.
+msgid "Ambient color energy:"
+msgstr ""
+
+#. An option that toggles the visibility of something on or off. Found in the format of "Visible: on/off"
+msgid "Visible:"
+msgstr ""
+
+#. Refers to the transformation options of an object, such as its position, rotation and scale. For technical details, see https://docs.godotengine.org/en/stable/tutorials/math/matrices_and_transforms.html
+msgid "Transform"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool. A category with mesh-related options.
+msgid "Mesh"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Prism is selected. Refers to the displacement of the upper edge along the X axis.
+msgid "Left to right:"
+msgstr ""
+
+#. Radius of a circle/spherical object.
+msgid "Radius:"
+msgstr "반지름:"
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a spherical object is selected.
+msgid "Radial segments:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a spherical object is selected. Refers to the number of segments along the height of the sphere.
+msgid "Rings:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Sphere is selected. If true, a hemisphere is created rather than a full sphere.
+msgid "Is hemisphere:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Cylinder is selected.
+msgid "Top radius:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Cylinder is selected.
+msgid "Bottom radius:"
+msgstr ""
+
+msgid "Text:"
+msgstr ""
+
+#. Refers to the depth of something, such as the depth of a 3D object.
+msgid "Depth:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Text object is selected. Refers to the size of one pixel's width on the text to scale it in 3D.
+msgid "Pixel size:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Mesh category if a Text object is selected. Step (in pixels) used to approximate Bézier curves.
+msgid "Curve step:"
+msgstr ""
+
+msgid "Horizontal alignment:"
+msgstr ""
+
+msgid "Vertical alignment:"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+#. Refers to the vertical space between lines in a text.
+msgid "Line spacing:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Light category if a light is selected. Refers to the energy of the light. The more energy, the brighter it shines.
+msgid "Energy:"
+msgstr ""
+
+#. Found in the tool options of the 3D Shape Edit tool, under the Light category if a light is selected. If true, the light's effect is reversed, darkening areas and casting bright shadows.
+msgid "Negative:"
+msgstr ""
+
+msgid "Shadow:"
+msgstr ""
+
+#. Refers to the range of something, like the range of a spotlight.
+msgid "Range:"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated.
+msgid "Animatable Properties"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. Refers to the frame that is currently being previewed.
+msgid "Preview frame:"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. It is a checkbox that toggles whether a property should be animated or not.
+msgid "Animate"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. Refers to the initial value of the property.
+msgid "Initial value:"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. Refers to the final value of the property.
+msgid "Final value:"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. Refers to the easing function that should be used to animate the property. https://easings.net/
+msgid "Ease type:"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of easing function.
+msgid "Starts slowly and speeds up towards the end"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of easing function.
+msgid "Starts quickly and slows down towards the end"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of easing function.
+msgid "Slowest at both ends, fast at middle"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of easing function.
+msgid "Fast at both ends, slow at middle"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Quadratic (power of 2)"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Cubic (power of 3)"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Quartic (power of 4)"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Quintic (power of 5)"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Exponential (power of x)"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Square root"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Sine"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Wiggling around the edges"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Bouncing at the end"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Backing out at ends"
+msgstr ""
+
+#. Found under certain image effects that support properties that can be animated. A type of interpolation.
+msgid "Spring towards the end"
+msgstr ""
+
+#. Used to turn images into a singular color
+msgid "Monochrome"
+msgstr ""
+
+#. Found in the Reference Images panel when no reference image has been imported.
+msgid "When opening an image, it may be imported as a reference."
+msgstr ""
+
+#. Found in the Reference Images panel after a reference image has been imported.
+msgid "Select an image below to change its properties.\n"
+"Note that you cannot draw while a reference image is selected."
+msgstr ""
+
+#. Removes the selected reference image.
+msgid "Remove"
+msgstr ""
+
+#. A tooltip to tell users to hold the Shift key while clicking the remove button
+msgid "Hold Shift while pressing to instantly remove."
+msgstr ""
+
+#. Shown in the confirmation dialog for removing a reference image.
+msgid "Are you sure you want to remove this reference image? It will not be deleted from your file system."
+msgstr ""
+
+#. Moves the reference image up in the list
+msgid "Move the selected reference image to the right"
+msgstr ""
+
+#. Moves the reference image down in the list
+msgid "Move the selected reference image to the left"
+msgstr ""
+
+#. Select a reference on the canvas
+msgid "Selects a reference image on the canvas"
+msgstr ""
+
+#. Moves the reference on the canvas
+msgid "Move the selected reference image"
+msgstr ""
+
+#. Rotates the reference on the canvas
+msgid "Rotate the selected reference image"
+msgstr ""
+
+#. Rotates the reference on the canvas
+msgid "Scale the selected reference image"
+msgstr ""
+
+#. Button to select no reference images in the Reference Images panel.
+msgid "none"
+msgstr ""
+
+#. Resets the Transform of the selected reference image on the canvas.
+msgid "Reset Transform"
+msgstr ""
+
+#. Position of the selected reference image on the canvas.
+msgid "Position"
+msgstr ""
+
+#. Scale of the selected reference image on the canvas.
+msgid "Scale"
+msgstr ""
+
+#. Rotation of the selected reference image on the canvas.
+msgid "Rotation"
+msgstr ""
+
+#. Toggle filter of the selected reference image on the canvas.
+msgid "Filter"
+msgstr ""
+
+#. Opacity of the selected reference image on the canvas.
+msgid "Opacity"
+msgstr ""
+
+#. Color clamping of the selected reference image on the canvas.
+msgid "Color Clamping"
+msgstr ""
+
+#. Used in checkbuttons (like on/off switches) that enable/disable something.
+msgid "Enabled"
+msgstr ""
+
+#. Refers to non-destructive effects (such as outline, drop shadow etc) that are applied to layers. Found in the title of the layer effects dialog.
+msgid "Layer effects"
+msgstr ""
+
+#. A button that, when pressed, shows a list of effects to add. Found in the the layer effects dialog.
+msgid "Add effect"
+msgstr ""
+
+#. Text from a confirmation dialog that appears when the user is attempting to drag and drop an image directly from the browser into Pixelorama.
+msgid "Do you want to download the image from %s?"
+msgstr ""
 

@@ -1,10 +1,15 @@
 extends ConfirmationDialog
 
-# Emitted when user confirms their changes
-signal saved(name, comment, width, height)
+## Emitted when the user confirms their changes
+signal saved(name: String, comment: String, width: int, height: int)
+## Emitted when the user deletes a palette
 signal deleted
+## Emitted when the user exports a palette
+signal exported(path: String)
 
-const DELETE_ACTION := "delete"
+const EXPORT_ACTION := &"export"
+const DELETE_ACTION := &"delete"
+const BIN_ACTION := &"trash"
 
 # Keeps original size of edited palette
 var origin_width := 0
@@ -12,19 +17,24 @@ var origin_height := 0
 
 var old_name := ""
 
-onready var name_input := $VBoxContainer/PaletteMetadata/Name
-onready var comment_input := $VBoxContainer/PaletteMetadata/Comment
-onready var width_input := $VBoxContainer/PaletteMetadata/Width
-onready var height_input := $VBoxContainer/PaletteMetadata/Height
-onready var path_input := $VBoxContainer/PaletteMetadata/Path
+@onready var name_input := $VBoxContainer/PaletteMetadata/Name
+@onready var comment_input := $VBoxContainer/PaletteMetadata/Comment
+@onready var width_input := $VBoxContainer/PaletteMetadata/Width
+@onready var height_input := $VBoxContainer/PaletteMetadata/Height
+@onready var path_input := $VBoxContainer/PaletteMetadata/Path
 
-onready var size_reduced_warning := $VBoxContainer/SizeReducedWarning
-onready var already_exists_warning := $VBoxContainer/AlreadyExistsWarning
+@onready var size_reduced_warning := $VBoxContainer/SizeReducedWarning
+@onready var already_exists_warning := $VBoxContainer/AlreadyExistsWarning
+@onready var delete_confirmation := $DeleteConfirmation
+@onready var export_file_dialog: FileDialog = $ExportFileDialog
 
 
 func _ready() -> void:
-	# Add delete button to edit palette dialog
-	add_button(tr("Delete"), false, DELETE_ACTION)
+	export_file_dialog.use_native_dialog = Global.use_native_file_dialogs
+	# Add delete and export buttons to edit palette dialog
+	add_button("Delete", false, DELETE_ACTION)
+	add_button("Export", false, EXPORT_ACTION)
+	delete_confirmation.add_button("Move to Trash", false, BIN_ACTION)
 
 
 func open(current_palette: Palette) -> void:
@@ -33,7 +43,8 @@ func open(current_palette: Palette) -> void:
 		comment_input.text = current_palette.comment
 		width_input.value = current_palette.width
 		height_input.value = current_palette.height
-		path_input.text = current_palette.resource_path
+		path_input.text = current_palette.path
+		export_file_dialog.current_file = current_palette.name
 
 		# Store original size so it can be compared with changed values
 		# and warning can be shown if it is reduced
@@ -50,48 +61,64 @@ func open(current_palette: Palette) -> void:
 		popup_centered()
 
 
-# Shows/hides a warning when palette size is being reduced
-func toggle_size_reduced_warning(visible: bool) -> void:
-	size_reduced_warning.visible = visible
+## Shows/hides a warning when palette size is being reduced
+func toggle_size_reduced_warning(to_show: bool) -> void:
+	size_reduced_warning.visible = to_show
 	# Required to resize window to correct size if warning causes content overflow
-	rect_size = rect_size
+	size = size
 
 
-# Shows/hides a warning when palette already exists
-func toggle_already_exists_warning(visible: bool) -> void:
-	already_exists_warning.visible = visible
+## Shows/hides a warning when palette already exists
+func toggle_already_exists_warning(to_show: bool) -> void:
+	already_exists_warning.visible = to_show
 
 	# Disable confirm button so user cannot save
-	get_ok().disabled = visible
+	get_ok_button().disabled = to_show
 
 	# Required to resize window to correct size if warning causes content overflow
-	rect_size = rect_size
+	size = size
 
 
-func _on_EditPaletteDialog_popup_hide() -> void:
-	Global.dialog_open(false)
+func _on_EditPaletteDialog_visibility_changed() -> void:
+	Global.dialog_open(visible)
 
 
 func _on_EditPaletteDialog_confirmed() -> void:
-	emit_signal("saved", name_input.text, comment_input.text, width_input.value, height_input.value)
+	saved.emit(name_input.text, comment_input.text, width_input.value, height_input.value)
 
 
-func _on_EditPaletteDialog_custom_action(action: String) -> void:
+func _on_EditPaletteDialog_custom_action(action: StringName) -> void:
 	if action == DELETE_ACTION:
+		delete_confirmation.popup_centered()
+	elif action == EXPORT_ACTION:
+		if OS.has_feature("web"):
+			exported.emit()
+		else:
+			export_file_dialog.popup_centered()
+
+
+func _on_delete_confirmation_confirmed() -> void:
+	deleted.emit(true)
+	delete_confirmation.hide()
+	hide()
+
+
+func _on_delete_confirmation_custom_action(action: StringName) -> void:
+	if action == BIN_ACTION:
+		deleted.emit(false)
+		delete_confirmation.hide()
 		hide()
-		emit_signal("deleted")
 
 
-func _on_size_value_changed(_value):
+func _on_size_value_changed(_value: int):
 	# Toggle resize warning label if palette size was reduced
 	var size_decreased: bool = (
-		height_input.value < origin_height
-		or width_input.value < origin_width
+		height_input.value < origin_height or width_input.value < origin_width
 	)
 	toggle_size_reduced_warning(size_decreased)
 
 
-func _on_Name_text_changed(new_name):
+func _on_Name_text_changed(new_name: String):
 	if old_name != new_name:
 		if Palettes.does_palette_exist(new_name):
 			toggle_already_exists_warning(true)
@@ -100,4 +127,8 @@ func _on_Name_text_changed(new_name):
 
 		# Disable ok button on empty name
 		if new_name == "":
-			get_ok().disabled = true
+			get_ok_button().disabled = true
+
+
+func _on_export_file_dialog_file_selected(path: String) -> void:
+	exported.emit(path)

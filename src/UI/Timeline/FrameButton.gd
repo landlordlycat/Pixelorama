@@ -1,33 +1,39 @@
 extends Button
 
+enum { PROPERTIES, REMOVE, CLONE, MOVE_LEFT, MOVE_RIGHT, NEW_TAG, IMPORT_TAG, REVERSE, CENTER }
+
 var frame := 0
 
-onready var popup_menu: PopupMenu = $PopupMenu
-onready var frame_properties: ConfirmationDialog = Global.control.find_node("FrameProperties")
+@onready var popup_menu: PopupMenu = $PopupMenu
+@onready var frame_properties := Global.control.find_child("FrameProperties") as ConfirmationDialog
+@onready var tag_properties := Global.control.find_child("TagProperties") as ConfirmationDialog
+@onready var append_tag_dialog := Global.control.find_child("ImportTagDialog") as AcceptDialog
 
 
 func _ready() -> void:
-	rect_min_size.x = Global.animation_timeline.cel_size
+	Global.cel_switched.connect(func(): z_index = 1 if button_pressed else 0)
+	custom_minimum_size.x = Global.animation_timeline.cel_size
 	text = str(frame + 1)
-	connect("pressed", self, "_button_pressed")
-	connect("mouse_entered", self, "_update_tooltip")
+	pressed.connect(_button_pressed)
+	mouse_entered.connect(_update_tooltip)
 
 
 func _update_tooltip() -> void:
-	var duration: float = Global.current_project.frames[frame].duration
-	var duration_sec: float = duration * (1.0 / Global.current_project.fps)
+	var frame_class := Global.current_project.frames[frame]
+	var duration := frame_class.duration
+	var duration_sec := frame_class.get_duration_in_seconds(Global.current_project.fps)
 	var duration_str := str(duration_sec)
 	if "." in duration_str:  # If its a decimal value
 		duration_str = "%.2f" % duration_sec  # Up to 2 decimal places
-	hint_tooltip = "%s: %sx (%s sec)" % [tr("Duration"), str(duration), duration_str]
+	tooltip_text = "%s: %sx (%s sec)" % [tr("Duration"), str(duration), duration_str]
 
 
 func _button_pressed() -> void:
 	if Input.is_action_just_released("left_mouse"):
 		Global.canvas.selection.transform_content_confirm()
-		var prev_curr_frame: int = Global.current_project.current_frame
+		var prev_curr_frame := Global.current_project.current_frame
 		if Input.is_action_pressed("shift"):
-			var frame_diff_sign = sign(frame - prev_curr_frame)
+			var frame_diff_sign := signi(frame - prev_curr_frame)
 			if frame_diff_sign == 0:
 				frame_diff_sign = 1
 			for i in range(prev_curr_frame, frame + frame_diff_sign, frame_diff_sign):
@@ -50,117 +56,119 @@ func _button_pressed() -> void:
 
 	elif Input.is_action_just_released("right_mouse"):
 		if Global.current_project.frames.size() == 1:
-			popup_menu.set_item_disabled(0, true)
-			popup_menu.set_item_disabled(2, true)
-			popup_menu.set_item_disabled(3, true)
+			popup_menu.set_item_disabled(REMOVE, true)
+			popup_menu.set_item_disabled(MOVE_LEFT, true)
+			popup_menu.set_item_disabled(MOVE_RIGHT, true)
+			popup_menu.set_item_disabled(REVERSE, true)
 		else:
-			popup_menu.set_item_disabled(0, false)
+			popup_menu.set_item_disabled(REMOVE, false)
+			if Global.current_project.selected_cels.size() > 1:
+				popup_menu.set_item_disabled(REVERSE, false)
+			else:
+				popup_menu.set_item_disabled(REVERSE, true)
 			if frame > 0:
-				popup_menu.set_item_disabled(2, false)
+				popup_menu.set_item_disabled(MOVE_LEFT, false)
 			if frame < Global.current_project.frames.size() - 1:
-				popup_menu.set_item_disabled(3, false)
-		popup_menu.popup(Rect2(get_global_mouse_position(), Vector2.ONE))
-		pressed = !pressed
+				popup_menu.set_item_disabled(MOVE_RIGHT, false)
+		popup_menu.popup_on_parent(Rect2(get_global_mouse_position(), Vector2.ONE))
+		button_pressed = !button_pressed
 	elif Input.is_action_just_released("middle_mouse"):
-		pressed = !pressed
-		Global.animation_timeline.delete_frames([frame])
+		button_pressed = !button_pressed
+		Global.animation_timeline.delete_frames(_get_frame_indices())
 	else:  # An example of this would be Space
-		pressed = !pressed
+		button_pressed = !button_pressed
 
 
 func _on_PopupMenu_id_pressed(id: int) -> void:
+	var indices := _get_frame_indices()
 	match id:
-		0:  # Remove Frame
-			Global.animation_timeline.delete_frames([frame])
-		1:  # Clone Frame
-			Global.animation_timeline.copy_frames([frame])
-		2:  # Move Left
-			change_frame_order(-1)
-		3:  # Move Right
-			change_frame_order(1)
-		4:  # Frame Properties
+		PROPERTIES:
+			frame_properties.frame_indices = indices
 			frame_properties.popup_centered()
 			Global.dialog_open(true)
-			frame_properties.set_frame_label(frame)
-			frame_properties.set_frame_dur(Global.current_project.frames[frame].duration)
+		REMOVE:
+			Global.animation_timeline.delete_frames(indices)
+		CLONE:
+			Global.animation_timeline.copy_frames(indices)
+		MOVE_LEFT:
+			Global.animation_timeline.move_frames(frame, -1)
+		MOVE_RIGHT:
+			Global.animation_timeline.move_frames(frame, 1)
+		NEW_TAG:
+			var current_tag_id := Global.current_project.animation_tags.size()
+			tag_properties.show_dialog(Rect2i(), current_tag_id, false, indices)
+		IMPORT_TAG:
+			append_tag_dialog.prepare_and_show(frame)
+		REVERSE:
+			Global.animation_timeline.reverse_frames(indices)
+		CENTER:
+			DrawingAlgos.center(indices)
 
 
-func change_frame_order(rate: int) -> void:
-	var change = frame + rate
-	var project = Global.current_project
-
-	project.undo_redo.create_action("Change Frame Order")
-	project.undo_redo.add_do_method(project, "move_frame", frame, change)
-	project.undo_redo.add_undo_method(project, "move_frame", change, frame)
-
-	if project.current_frame == frame:
-		project.undo_redo.add_do_method(project, "change_cel", change)
-	else:
-		project.undo_redo.add_do_method(project, "change_cel", project.current_frame)
-
-	project.undo_redo.add_undo_method(project, "change_cel", project.current_frame)
-	project.undo_redo.add_undo_method(Global, "undo_or_redo", true)
-	project.undo_redo.add_do_method(Global, "undo_or_redo", false)
-	project.undo_redo.commit_action()
-
-
-func get_drag_data(_position) -> Array:
+func _get_drag_data(_position: Vector2) -> Variant:
 	var button := Button.new()
-	button.rect_size = rect_size
+	button.size = size
 	button.theme = Global.control.theme
 	button.text = text
 	set_drag_preview(button)
 
-	return ["Frame", frame]
+	return ["Frame", _get_frame_indices()]
 
 
-func can_drop_data(_pos, data) -> bool:
-	if typeof(data) == TYPE_ARRAY:
-		if data[0] == "Frame":
-			if data[1] != frame:  # Can't move to same frame
-				var region: Rect2
-				if Input.is_action_pressed("ctrl"):  # Swap frames
-					region = get_global_rect()
-				else:  # Move frames
-					if _get_region_rect(0, 0.5).has_point(get_global_mouse_position()):
-						region = _get_region_rect(-0.125, 0.125)
-						region.position.x -= 2  # Container spacing
-					else:
-						region = _get_region_rect(0.875, 1.125)
-						region.position.x += 2  # Container spacing
-				Global.animation_timeline.drag_highlight.rect_global_position = region.position
-				Global.animation_timeline.drag_highlight.rect_size = region.size
-				Global.animation_timeline.drag_highlight.visible = true
-				return true
-	Global.animation_timeline.drag_highlight.visible = false
-	return false
+func _can_drop_data(_pos: Vector2, data) -> bool:
+	if typeof(data) != TYPE_ARRAY:
+		Global.animation_timeline.drag_highlight.visible = false
+		return false
+	if data[0] != "Frame":
+		Global.animation_timeline.drag_highlight.visible = false
+		return false
+	var drop_frames: PackedInt32Array = data[1]
+	# Can't move to same frame
+	for drop_frame in drop_frames:
+		if drop_frame == frame:
+			Global.animation_timeline.drag_highlight.visible = false
+			return false
+	var region: Rect2
+	if Input.is_action_pressed("ctrl") and drop_frames.size() == 1:  # Swap frames
+		region = get_global_rect()
+	else:  # Move frames
+		if _get_region_rect(0, 0.5).has_point(get_global_mouse_position()):
+			region = _get_region_rect(-0.125, 0.125)
+		else:
+			region = _get_region_rect(0.875, 1.125)
+	Global.animation_timeline.drag_highlight.global_position = region.position
+	Global.animation_timeline.drag_highlight.size = region.size
+	Global.animation_timeline.drag_highlight.visible = true
+	return true
 
 
-func drop_data(_pos, data) -> void:
-	var drop_frame = data[1]
-	var project = Global.current_project
+func _drop_data(_pos: Vector2, data) -> void:
+	var drop_frames: PackedInt32Array = data[1]
+	var project := Global.current_project
 	project.undo_redo.create_action("Change Frame Order")
-	if Input.is_action_pressed("ctrl"):  # Swap frames
-		project.undo_redo.add_do_method(project, "swap_frame", frame, drop_frame)
-		project.undo_redo.add_undo_method(project, "swap_frame", frame, drop_frame)
+	if Input.is_action_pressed("ctrl") and drop_frames.size() == 1:  # Swap frames
+		project.undo_redo.add_do_method(project.swap_frame.bind(frame, drop_frames[0]))
+		project.undo_redo.add_undo_method(project.swap_frame.bind(frame, drop_frames[0]))
 	else:  # Move frames
 		var to_frame: int
 		if _get_region_rect(0, 0.5).has_point(get_global_mouse_position()):  # Left
 			to_frame = frame
 		else:  # Right
 			to_frame = frame + 1
-		if drop_frame < frame:
-			to_frame -= 1
-		project.undo_redo.add_do_method(project, "move_frame", drop_frame, to_frame)
-		project.undo_redo.add_undo_method(project, "move_frame", to_frame, drop_frame)
+		for drop_frame in drop_frames:
+			if drop_frame < frame:
+				to_frame -= 1
+		var to_frames := range(to_frame, to_frame + drop_frames.size())
+		project.undo_redo.add_do_method(project.move_frames.bind(drop_frames, to_frames))
+		project.undo_redo.add_undo_method(project.move_frames.bind(to_frames, drop_frames))
 
-	if project.current_frame == drop_frame:
-		project.undo_redo.add_do_method(project, "change_cel", frame)
+	if project.current_frame in drop_frames:
+		project.undo_redo.add_do_method(project.change_cel.bind(frame))
 	else:
-		project.undo_redo.add_do_method(project, "change_cel", project.current_frame)
-	project.undo_redo.add_undo_method(project, "change_cel", project.current_frame)
-	project.undo_redo.add_undo_method(Global, "undo_or_redo", true)
-	project.undo_redo.add_do_method(Global, "undo_or_redo", false)
+		project.undo_redo.add_do_method(project.change_cel.bind(project.current_frame))
+	project.undo_redo.add_undo_method(project.change_cel.bind(project.current_frame))
+	project.undo_redo.add_undo_method(Global.undo_or_redo.bind(true))
+	project.undo_redo.add_do_method(Global.undo_or_redo.bind(false))
 	project.undo_redo.commit_action()
 
 
@@ -169,3 +177,15 @@ func _get_region_rect(x_begin: float, x_end: float) -> Rect2:
 	rect.position.x += rect.size.x * x_begin
 	rect.size.x *= x_end - x_begin
 	return rect
+
+
+func _get_frame_indices() -> PackedInt32Array:
+	var indices := []
+	for cel in Global.current_project.selected_cels:
+		var f: int = cel[0]
+		if not f in indices:
+			indices.append(f)
+	indices.sort()
+	if not frame in indices:
+		indices = [frame]
+	return indices
